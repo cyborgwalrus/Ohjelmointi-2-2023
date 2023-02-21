@@ -22,8 +22,9 @@ public class Student extends ConstantValues{
     private String firstName = NO_NAME;
     private String lastName = NO_NAME;
     private int id;
-    
+
     private double bachelorCredits = MIN_CREDIT;
+    private double masterCredits = MIN_CREDIT;
     private String titleOfMastersThesis = NO_TITLE;
     private String titleOfBachelorThesis = NO_TITLE;
     
@@ -39,6 +40,94 @@ public class Student extends ConstantValues{
         this.firstName = firstName;
         this.lastName = lastName;
         id = GetRandomId();
+    }
+
+//Public Methods
+    //firstName
+    public String getFirstName() {
+        return this.firstName;
+    }
+    public void setFirstName(String firstName) {
+        if(firstName.equals(null)) System.out.println("firstName can't be null");
+        this.firstName = firstName;
+    }
+    
+    //lastName
+    public String getLastName() {
+        return this.lastName;
+    } 
+    public void setLastName(String lastName) {
+        if(lastName.equals(null)) System.out.println("lastName can't be null");
+        else this.lastName = lastName;
+    }
+
+    //id
+    public int getId() {
+        return this.id;
+    }
+    public void setId(int id) {
+        if(id<1 || id>100) System.out.println("Student id must be in the range [1,100]");
+        else this.id = id;
+    }
+
+    //bachelorCredits
+    public double getBachelorCredits() {
+        return this.bachelorCredits;
+    }
+    public void setBachelorCredits(double bachelorCredits) {
+        if(bachelorCredits<0.0 || bachelorCredits>300.0) System.out.println("BachelorCredits must be in the range [0.0,300.0]");
+        else this.bachelorCredits = bachelorCredits;
+    }
+
+    //masterCredits
+    public double getMasterCredits() {
+        return this.masterCredits;
+    }
+    public void setMasterCredits(double masterCredits) {
+        if(masterCredits<0.0 || masterCredits>300.0) System.out.println("BachelorCredits must be in the range [0.0,300.0]");
+        else this.masterCredits = masterCredits;
+    }
+
+    //titleOfMasterThesis
+    public String getTitleOfMastersThesis() {
+        return this.titleOfMastersThesis;
+    }
+    public void setTitleOfMastersThesis(String titleOfMastersThesis) {
+        if(titleOfMastersThesis.equals(null)) System.out.println("titleOfMastersThesis can't be null");
+        else this.titleOfMastersThesis = titleOfMastersThesis;
+    }
+
+    //titleOfBachelorThesis
+    public String getTitleOfBachelorThesis() {
+        return this.titleOfBachelorThesis;
+    }
+    public void setTitleOfBachelorThesis(String titleOfBachelorThesis) {
+        if(titleOfBachelorThesis.equals(null)) System.out.println("titleOfBachelorThesis can't be null");
+        this.titleOfBachelorThesis = titleOfBachelorThesis;
+    }
+
+    //startYear
+    public int getStartYear() {
+        return this.startYear;
+    }
+    public void setStartYear(int startYear) {
+        this.startYear = startYear;
+    }
+
+    //graduationYear
+    public int getGraduationYear() {
+        return this.graduationYear;
+    }
+    public void setGraduationYear(int graduationYear) {
+        this.graduationYear = graduationYear;
+    }
+
+    //birthDate
+    public String getBirthDate() {
+        return this.birthDate;
+    }
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
 //Private Methods
