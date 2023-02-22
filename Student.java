@@ -169,7 +169,7 @@ public class Student extends ConstantValues {
     }
 
     private int GetRandomId() {
-        return ((int) Math.random() * 100) + 1;
+        return (int)(Math.random() * 99 ) + 1;
     }
 
     private boolean canGraduate() {
