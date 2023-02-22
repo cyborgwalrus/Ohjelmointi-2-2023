@@ -16,6 +16,8 @@ class ConstantValues {
 
     public static final double BACHELOR_CREDITS = 180.0;
     public static final double MASTER_CREDITS = 120.0;
+
+    public static final int CURRENT_YEAR = LocalDate.now().getYear();
 }
 
 public class Student extends ConstantValues {
@@ -29,8 +31,8 @@ public class Student extends ConstantValues {
     private String titleOfMastersThesis = NO_TITLE;
     private String titleOfBachelorThesis = NO_TITLE;
 
-    private int startYear = LocalDate.now().getYear();
-    private int graduationYear;
+    private int startYear = CURRENT_YEAR;
+    private int graduationYear = 0;
     private String birthDate = NO_BIRTHDATE;
 
     // Constructors
@@ -135,7 +137,7 @@ public class Student extends ConstantValues {
     public void setStartYear(final int startYear) {
         if (startYear < 2000)
             System.out.println("startYear can't be before year 2000");
-        else if (startYear > LocalDate.now().getYear())
+        else if (startYear > CURRENT_YEAR)
             System.out.println("startYear can't be in the future");
         else
             this.startYear = startYear;
@@ -146,25 +148,115 @@ public class Student extends ConstantValues {
         return this.graduationYear;
     }
 
-    // TODO canGraduate, hasGraduated, getStudyYears, toString
     public void setGraduationYear(final int graduationYear) {
         this.graduationYear = graduationYear;
     }
 
-    // birthDate
-    public String getBirthDate() {
-        return this.birthDate;
+    public boolean hasGraduated() {
+        // If graduationYear hasn't been set, returns false
+        if (this.graduationYear == 0)
+            return false;
+        if (this.graduationYear < CURRENT_YEAR)
+            return true;
+        else
+            return false;
+
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public int getStudyYears() {
+        return CURRENT_YEAR - getStartYear();
     }
 
     // Private Methods
     private int GetRandomId() {
         return ((int) Math.random() * 100) + 1;
     }
-    // TODO version 2 methods
-}
 
-// TODO version 1 test
+    private boolean canGraduate() {
+        boolean hasRequiredBachelorCredits = getBachelorCredits() > BACHELOR_CREDITS;
+        boolean hasRequiredMasterCredits = getMasterCredits() > MASTER_CREDITS;
+
+        boolean hasTitleOfBachelorThesis = getTitleOfBachelorThesis() != NO_TITLE;
+        boolean hasTitleOfMastersThesis = getTitleOfMastersThesis() != NO_TITLE;
+
+        if (hasRequiredBachelorCredits && hasRequiredMasterCredits
+                && hasTitleOfBachelorThesis && hasTitleOfMastersThesis)
+            return true;
+        else
+            return false;
+
+    }
+
+    // for toString
+    private String toTextRow(String inputString, boolean isIndented) {
+        String output = "";
+        if (isIndented)
+            output = "       ";
+        output += inputString + "\n";
+        return output;
+
+    }
+
+    public String toString() {
+        String outputString = "";
+
+        outputString += toTextRow("Student id: " + getId(), false);
+        outputString += toTextRow("FirstName: " + getFirstName() + ", " + "LastName: " + getLastName(), true);
+
+        if (hasGraduated())
+            outputString += toTextRow("Status: The student has graduated in " + getGraduationYear(), true);
+        else
+            outputString += toTextRow("Status: The student has not graduated, yet.", true);
+
+        outputString += toTextRow("StartYear: " + getStartYear() +
+                " (studies have lasted for " + getStudyYears() + " years)", true);
+
+        outputString += toTextRow("BachelorCredits: " + getBachelorCredits(), true);
+        outputString += toTextRow("MasterCredits: " + getMasterCredits(), true);
+
+        outputString += toTextRow("TitleOfMastersThesis: " + getTitleOfMastersThesis(), true);
+        outputString += toTextRow("TitleOfBachelorThesis: " + getTitleOfBachelorThesis(), true);
+
+        return outputString;
+    }
+
+    // TODO version 2 methods
+
+    // TODO version 1 test
+    public static void main(String args[]) {
+        // Test 1– version 1
+        // 1. Create a student, the first student using the constructor with no
+        // parameters
+
+        // 2. Create a student, the second student using the constructor with last name
+        // and first name,
+        // “Mouse” and “Mickey”, accordingly
+
+        // 3. For the first student, set the first name to “Donald”
+
+        // 4. For the first student, set the last name to “Duck”
+
+        // 5. For the first student, set the student id to 330
+
+        // 6. For the first student, set the number of bachelor credits to 55
+
+        // 7. For the first student, set the number of master credits to 14
+
+        // 8. For the first student, set the title of the bachelor thesis to “Bachelor
+        // thesis title”
+
+        // 9. For the first student, set the start year of the studies to 2020
+
+        // 10. For the first student, set graduation year to 2021
+
+        // 11. For the second student, set the number of bachelor credits to 5
+
+        // 12. For the second student, set the student id to 4
+
+        // 13. For the second student, set the title of the bachelor thesis to null
+
+        // 14. Print the details of the first student using toString method.
+
+        // 15. Print the details of the second student using toString method.
+    }
+}
