@@ -149,7 +149,8 @@ public class Student extends ConstantValues {
     }
 
     public void setGraduationYear(final int graduationYear) {
-        this.graduationYear = graduationYear;
+        if (canGraduate())
+            this.graduationYear = graduationYear;
     }
 
     public boolean hasGraduated() {
@@ -167,7 +168,6 @@ public class Student extends ConstantValues {
         return CURRENT_YEAR - getStartYear();
     }
 
-    // Private Methods
     private int GetRandomId() {
         return ((int) Math.random() * 100) + 1;
     }
@@ -227,36 +227,40 @@ public class Student extends ConstantValues {
         // Test 1– version 1
         // 1. Create a student, the first student using the constructor with no
         // parameters
-
+        Student student1 = new Student();
         // 2. Create a student, the second student using the constructor with last name
-        // and first name,
-        // “Mouse” and “Mickey”, accordingly
+        // and first name,“Mouse” and “Mickey”, accordingly
+        Student student2 = new Student("Mickey", "Mouse");
 
         // 3. For the first student, set the first name to “Donald”
-
         // 4. For the first student, set the last name to “Duck”
-
         // 5. For the first student, set the student id to 330
-
         // 6. For the first student, set the number of bachelor credits to 55
-
         // 7. For the first student, set the number of master credits to 14
-
         // 8. For the first student, set the title of the bachelor thesis to “Bachelor
         // thesis title”
-
         // 9. For the first student, set the start year of the studies to 2020
-
         // 10. For the first student, set graduation year to 2021
-
+        student1.setFirstName("Donald");
+        student1.setLastName("Duck");
+        student1.setId(330);
+        student1.setBachelorCredits(55);
+        student1.setMasterCredits(14);
+        student1.setTitleOfBachelorThesis("Bachelor thesis title");
+        student1.setStartYear(2020);
+        student1.setGraduationYear(2021);
+        
         // 11. For the second student, set the number of bachelor credits to 5
-
         // 12. For the second student, set the student id to 4
-
         // 13. For the second student, set the title of the bachelor thesis to null
-
+        student2.setBachelorCredits(5);
+        student2.setId(4);
+        student2.setTitleOfBachelorThesis(null);
+        
         // 14. Print the details of the first student using toString method.
-
         // 15. Print the details of the second student using toString method.
+        System.out.println(student1.toString());
+        System.out.println(student2.toString());
+
     }
 }
