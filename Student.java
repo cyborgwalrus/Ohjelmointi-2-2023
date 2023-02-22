@@ -191,7 +191,7 @@ public class Student extends ConstantValues {
     private String toTextRow(String inputString, boolean isIndented) {
         String output = "";
         if (isIndented)
-            output = "       ";
+            output = "        ";
         output += inputString + "\n";
         return output;
 
