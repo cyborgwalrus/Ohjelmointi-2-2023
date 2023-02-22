@@ -124,7 +124,7 @@ public class Student extends ConstantValues {
     }
 
     public void setTitleOfBachelorThesis(String titleOfBachelorThesis) {
-        if (titleOfBachelorThesis.equals(null))
+        if (titleOfBachelorThesis == null)
             System.out.println("titleOfBachelorThesis can't be null");
         this.titleOfBachelorThesis = titleOfBachelorThesis;
     }
