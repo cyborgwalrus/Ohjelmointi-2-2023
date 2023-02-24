@@ -175,8 +175,8 @@ public class Student extends ConstantValues {
     }
 
     private boolean canGraduate() {
-        boolean hasRequiredBachelorCredits = getBachelorCredits() > BACHELOR_CREDITS;
-        boolean hasRequiredMasterCredits = getMasterCredits() > MASTER_CREDITS;
+        boolean hasRequiredBachelorCredits = getBachelorCredits() >= BACHELOR_CREDITS;
+        boolean hasRequiredMasterCredits = getMasterCredits() >= MASTER_CREDITS;
 
         boolean hasTitleOfBachelorThesis = getTitleOfBachelorThesis() != NO_TITLE;
         boolean hasTitleOfMastersThesis = getTitleOfMastersThesis() != NO_TITLE;
@@ -205,8 +205,8 @@ public class Student extends ConstantValues {
             outputString += toIndentedTextRow("Status: The student has graduated in " + getGraduationYear());
         else
             outputString += toIndentedTextRow("Status: The student has not graduated, yet.");
-        
-            outputString += toIndentedTextRow(
+
+        outputString += toIndentedTextRow(
                 "StartYear: " + getStartYear() + " (studies have lasted for " + getStudyYears() + " years)");
         outputString += toIndentedTextRow("BachelorCredits: " + getBachelorCredits());
         outputString += toIndentedTextRow("MasterCredits: " + getMasterCredits());
@@ -215,7 +215,6 @@ public class Student extends ConstantValues {
 
         return outputString;
     }
-
 
     public static void main(String args[]) {
         // Test 1– version 1
@@ -256,5 +255,38 @@ public class Student extends ConstantValues {
         System.out.println(student1.toString());
         System.out.println(student2.toString());
 
+        // Test 2 – version 1
+        // 1. Create a student, the first student using the constructor with no
+        // parameters
+        // 2. Create a student, the second student using the constructor with last name
+        // and first name, “Mouse”
+        // and “Mickey”, accordingly
+        Student student3 = new Student();
+        Student student4 = new Student("Mickey", "Mouse");
+
+        // 3. For the first student, set the first name to “Donald”
+        // 4. For the first student, set the last name to “Duck”
+        // 5. For the first student, set the student id to 0
+        // 6. For the first student, set the number of bachelor credits to 180
+        // 7. For the first student, set the number of master credits to 180
+        // 8. For the first student, set the title of the master’s thesis to “Masters
+        // thesis title”
+        // 9. For the first student, set the title of the bachelor thesis to “Bachelor
+        // thesis title”
+        // 10. For the first student, set the start year of the studies to 2001
+        // 11. For the first student, set graduation year to 2020
+        student3.setFirstName("Donald");
+        student3.setLastName("Duck");
+        student3.setId(0);
+        student3.setBachelorCredits(180);
+        student3.setMasterCredits(180);
+        student3.setTitleOfMastersThesis("Masters thesis title");
+        student3.setTitleOfBachelorThesis("Bachelor thesis title");
+        student3.setStartYear(2001);
+        student3.setGraduationYear(2020);
+        // 12. Print the details of the first student using toString method.
+        // 13. Print the details of the second student using toString method.
+        System.out.println(student3.toString());
+        System.out.println(student4.toString());
     }
 }
