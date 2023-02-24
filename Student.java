@@ -18,6 +18,8 @@ class ConstantValues {
     public static final double MASTER_CREDITS = 120.0;
 
     public static final int CURRENT_YEAR = LocalDate.now().getYear();
+    public static final String INDENTATION = "        ";
+
 }
 
 public class Student extends ConstantValues {
@@ -157,6 +159,7 @@ public class Student extends ConstantValues {
         // If graduationYear hasn't been set, returns false
         if (this.graduationYear == 0)
             return false;
+
         if (this.graduationYear < CURRENT_YEAR)
             return true;
         else
@@ -169,7 +172,7 @@ public class Student extends ConstantValues {
     }
 
     private int GetRandomId() {
-        return (int)(Math.random() * 99 ) + 1;
+        return (int) (Math.random() * 99) + 1;
     }
 
     private boolean canGraduate() {
@@ -188,34 +191,28 @@ public class Student extends ConstantValues {
     }
 
     // for toString
-    private String toTextRow(String inputString, boolean isIndented) {
-        String output = "";
-        if (isIndented)
-            output = "        ";
-        output += inputString + "\n";
-        return output;
+    private String toIndentedTextRow(String inputString) {
+        return INDENTATION + inputString + "\n";
 
     }
 
     public String toString() {
         String outputString = "";
 
-        outputString += toTextRow("Student id: " + getId(), false);
-        outputString += toTextRow("FirstName: " + getFirstName() + ", " + "LastName: " + getLastName(), true);
+        outputString += toIndentedTextRow("Student id: " + getId());
+        outputString += toIndentedTextRow("FirstName: " + getFirstName() + ", " + "LastName: " + getLastName());
 
         if (hasGraduated())
-            outputString += toTextRow("Status: The student has graduated in " + getGraduationYear(), true);
+            outputString += toIndentedTextRow("Status: The student has graduated in " + getGraduationYear());
         else
-            outputString += toTextRow("Status: The student has not graduated, yet.", true);
-
-        outputString += toTextRow("StartYear: " + getStartYear() +
-                " (studies have lasted for " + getStudyYears() + " years)", true);
-
-        outputString += toTextRow("BachelorCredits: " + getBachelorCredits(), true);
-        outputString += toTextRow("MasterCredits: " + getMasterCredits(), true);
-
-        outputString += toTextRow("TitleOfMastersThesis: " + getTitleOfMastersThesis(), true);
-        outputString += toTextRow("TitleOfBachelorThesis: " + getTitleOfBachelorThesis(), true);
+            outputString += toIndentedTextRow("Status: The student has not graduated, yet.");
+        
+            outputString += toIndentedTextRow(
+                "StartYear: " + getStartYear() + " (studies have lasted for " + getStudyYears() + " years)");
+        outputString += toIndentedTextRow("BachelorCredits: " + getBachelorCredits());
+        outputString += toIndentedTextRow("MasterCredits: " + getMasterCredits());
+        outputString += toIndentedTextRow("TitleOfMastersThesis: " + getTitleOfMastersThesis());
+        outputString += toIndentedTextRow("TitleOfBachelorThesis: " + getTitleOfBachelorThesis());
 
         return outputString;
     }
@@ -249,14 +246,14 @@ public class Student extends ConstantValues {
         student1.setTitleOfBachelorThesis("Bachelor thesis title");
         student1.setStartYear(2020);
         student1.setGraduationYear(2021);
-        
+
         // 11. For the second student, set the number of bachelor credits to 5
         // 12. For the second student, set the student id to 4
         // 13. For the second student, set the title of the bachelor thesis to null
         student2.setBachelorCredits(5);
         student2.setId(4);
         student2.setTitleOfBachelorThesis(null);
-        
+
         // 14. Print the details of the first student using toString method.
         // 15. Print the details of the second student using toString method.
         System.out.println(student1.toString());
