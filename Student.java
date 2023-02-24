@@ -18,7 +18,7 @@ class ConstantValues {
     public static final double MASTER_CREDITS = 120.0;
 
     public static final int CURRENT_YEAR = LocalDate.now().getYear();
-    public static final String INDENTATION = "        ";
+    public static final String INDENTATION = " ".repeat(8);
 
 }
 
