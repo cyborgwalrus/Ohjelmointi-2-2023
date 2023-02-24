@@ -307,8 +307,7 @@ public class Student extends ConstantValues {
         System.out.println(student3.toString());
         System.out.println(student4.toString());
 
-        // -------Test 3 – version
-        // 1----------------------------------------------------------------
+        // -------Test 3 –version 1---------------------------------------------------
         // 1. Create a student, the first student using the constructor with no
         // parameters
         // 2. Create a student, the second student using the constructor with last name
