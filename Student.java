@@ -54,9 +54,11 @@ public class Student extends ConstantValues {
     }
 
     public void setFirstName(String firstName) {
-        if (firstName.equals(null))
-            System.out.println("firstName can't be null");
-        this.firstName = firstName;
+        if (firstName == null)
+            ;
+        // System.out.println("firstName can't be null");
+        else
+            this.firstName = firstName;
     }
 
     // lastName
@@ -65,8 +67,9 @@ public class Student extends ConstantValues {
     }
 
     public void setLastName(String lastName) {
-        if (lastName.equals(null))
-            System.out.println("lastName can't be null");
+        if (lastName == null)
+            ;
+        // System.out.println("lastName can't be null");
         else
             this.lastName = lastName;
     }
@@ -78,7 +81,8 @@ public class Student extends ConstantValues {
 
     public void setId(int id) {
         if (id < 1 || id > 100)
-            System.out.println("Student id must be in the range [1,100]");
+            ;
+        // System.out.println("Student id must be in the range [1,100]");
         else
             this.id = id;
     }
@@ -114,7 +118,8 @@ public class Student extends ConstantValues {
 
     public void setTitleOfMastersThesis(String titleOfMastersThesis) {
         if (titleOfMastersThesis.equals(null))
-            System.out.println("titleOfMastersThesis can't be null");
+            ;
+        // System.out.println("titleOfMastersThesis can't be null");
         else
             this.titleOfMastersThesis = titleOfMastersThesis;
     }
@@ -126,8 +131,10 @@ public class Student extends ConstantValues {
 
     public void setTitleOfBachelorThesis(String titleOfBachelorThesis) {
         if (titleOfBachelorThesis == null)
-            System.out.println("titleOfBachelorThesis can't be null");
-        this.titleOfBachelorThesis = titleOfBachelorThesis;
+            ;
+        // System.out.println("titleOfBachelorThesis can't be null");
+        else
+            this.titleOfBachelorThesis = titleOfBachelorThesis;
     }
 
     // startYear
@@ -137,9 +144,11 @@ public class Student extends ConstantValues {
 
     public void setStartYear(final int startYear) {
         if (startYear < 2000)
-            System.out.println("startYear can't be before year 2000");
+            ;
+        // System.out.println("startYear can't be before year 2000");
         else if (startYear > CURRENT_YEAR)
-            System.out.println("startYear can't be in the future");
+            ;
+        // System.out.println("startYear can't be in the future");
         else
             this.startYear = startYear;
     }
@@ -149,9 +158,14 @@ public class Student extends ConstantValues {
         return this.graduationYear;
     }
 
-    public void setGraduationYear(final int graduationYear) {
-        if (canGraduate())
-            this.graduationYear = graduationYear;
+    public String setGraduationYear(final int graduationYear) {
+        if (canGraduate() == false)
+            return "Check required studies";
+        if (graduationYear < getStartYear())
+            return "Check graduation year";
+
+        this.graduationYear = graduationYear;
+        return "";
     }
 
     public boolean hasGraduated() {
@@ -159,7 +173,7 @@ public class Student extends ConstantValues {
         if (this.graduationYear == 0)
             return false;
 
-        if (this.graduationYear < CURRENT_YEAR)
+        if (this.graduationYear <= CURRENT_YEAR)
             return true;
         else
             return false;
@@ -220,7 +234,8 @@ public class Student extends ConstantValues {
     }
 
     public static void main(String args[]) {
-        // Test 1– version 1
+
+        // --------Test 1– version 1----------------------------------------------
         // 1. Create a student, the first student using the constructor with no
         // parameters
         Student student1 = new Student();
@@ -258,7 +273,7 @@ public class Student extends ConstantValues {
         System.out.println(student1.toString());
         System.out.println(student2.toString());
 
-        // Test 2 – version 1
+        // -------Test 2 – version 1 -------------------------------------------------
         // 1. Create a student, the first student using the constructor with no
         // parameters
         // 2. Create a student, the second student using the constructor with last name
@@ -291,5 +306,62 @@ public class Student extends ConstantValues {
         // 13. Print the details of the second student using toString method.
         System.out.println(student3.toString());
         System.out.println(student4.toString());
+
+        // -------Test 3 – version
+        // 1----------------------------------------------------------------
+        // 1. Create a student, the first student using the constructor with no
+        // parameters
+        // 2. Create a student, the second student using the constructor with last name
+        // and first name,
+        // “Mouse” and “Mickey”, accordingly
+        Student student5 = new Student();
+        Student student6 = new Student("Mickey", "Mouse");
+
+        // 3. For the first student, set the first name to “Donald”
+        // 4. For the first student, set the last name to “Duck”
+        // 5. For the first student, set the student id to 0
+        // 6. For the first student, set the number of bachelor credits to 180
+        // 7. For the first student, set the number of master credits to 120
+        // 8. For the first student, set the title of the bachelor thesis to “Bachelor
+        // thesis title”
+        // 9. For the first student, set the start year of the studies to 2021
+        // 10. For the first student, set graduation year to 2021
+        student5.setFirstName("Donald");
+        student5.setLastName("Duck");
+        student5.setId(0);
+        student5.setBachelorCredits(180);
+        student5.setMasterCredits(120);
+        student5.setTitleOfBachelorThesis("Bachelor thesis title");
+        student5.setStartYear(2021);
+        student5.setGraduationYear(2021);
+        // 11. For the second student, set the first name to null
+        // 12. For the second student, set the last name to null
+        // 13. For the second student, set the number of bachelor credits to 180
+        // 14. For the second student, set the number of master credits to 120
+        // 15. For the second student, set the title of the bachelor thesis to “How to
+        // survive a bachelors thesis”
+        // 16. For the second student, set the title of the master’s thesis to “Happy
+        // ending”
+        // 17. For the second student, set the student id to 101
+        student6.setFirstName(null);
+        student6.setLastName(null);
+        student6.setId(101);
+        student6.setBachelorCredits(180);
+        student6.setMasterCredits(120);
+        student6.setTitleOfMastersThesis("Happy ending");
+        student6.setTitleOfBachelorThesis("How to survive a bachelors thesis");
+
+        // 18. Print the details of the first student using toString method.
+        // 19. Print the details of the second student using toString method.
+        System.out.println(student5.toString());
+        System.out.println(student6.toString());
+
+        // 20. Print the output when setting the graduation year to 2023 for the first
+        // student
+        // 21. Print the output when setting the graduation year to 2019 for the second
+        // student
+        System.out.println(student5.setGraduationYear(2023));
+        System.out.println(student6.setGraduationYear(2019));
+
     }
 }
