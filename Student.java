@@ -199,7 +199,7 @@ public class Student extends ConstantValues {
     public String toString() {
         String outputString = "";
 
-        outputString += toIndentedTextRow("Student id: " + getId());
+        outputString += "Student id: " + getId() + "\n";
         outputString += toIndentedTextRow("FirstName: " + getFirstName() + ", " + "LastName: " + getLastName());
 
         if (hasGraduated())
