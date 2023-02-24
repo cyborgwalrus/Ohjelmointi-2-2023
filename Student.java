@@ -167,7 +167,10 @@ public class Student extends ConstantValues {
     }
 
     public int getStudyYears() {
-        return CURRENT_YEAR - getStartYear();
+        if (hasGraduated())
+            return getGraduationYear() - getStartYear();
+        else
+            return CURRENT_YEAR - getStartYear();
     }
 
     private int GetRandomId() {
