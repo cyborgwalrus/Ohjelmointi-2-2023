@@ -35,7 +35,6 @@ public class Student extends ConstantValues {
 
     private int startYear = CURRENT_YEAR;
     private int graduationYear = 0;
-    private String birthDate = NO_BIRTHDATE;
 
     // Constructors
     public Student() {
@@ -217,9 +216,7 @@ public class Student extends ConstantValues {
         return outputString;
     }
 
-    // TODO version 2 methods
 
-    // TODO version 1 test
     public static void main(String args[]) {
         // Test 1– version 1
         // 1. Create a student, the first student using the constructor with no
