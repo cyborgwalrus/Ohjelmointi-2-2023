@@ -235,7 +235,7 @@ public class Student extends ConstantValues {
         return outputString;
     }
 
-    // TODO setPersonId, checkValidCharacter, checkBirthdate
+    // TODO setPersonId, checkValidCharacter
 
     private boolean checkPersonIDNumber(final String idNumber) {
         if (idNumber.length() != 11)
@@ -256,6 +256,7 @@ public class Student extends ConstantValues {
 
     private boolean checkBirthdate(final String date) {
         final int shorterMonths[] = { 4, 6, 9, 11 };
+        
         String dateArray[] = date.split(".");
         int day = Integer.parseInt(dateArray[0]);
         int month = Integer.parseInt(dateArray[1]);
