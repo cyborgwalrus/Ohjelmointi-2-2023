@@ -1,6 +1,5 @@
 import java.lang.Math;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 class ConstantValues {
     public static final String NO_NAME = "No name";
