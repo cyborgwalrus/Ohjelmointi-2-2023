@@ -234,11 +234,24 @@ public class Student extends ConstantValues {
         return outputString;
     }
 
-    //TODO setPersonId, checkPersonIDNumber, checkValidCharacter, checkBirthdate
-    private boolean checkLeapYear(int year){
+    // TODO setPersonId, checkValidCharacter, checkBirthdate
+
+    private boolean checkPersonIDNumber(final String idNumber) {
+        if (idNumber.length() != 11)
+            return false;
+        switch (idNumber.charAt(6)) {
+            case '+':
+            case '-':
+            case 'A':
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private boolean checkLeapYear(int year) {
         return LocalDate.now().withYear(year).isLeapYear();
     }
-    
 
     public static void main(String args[]) {
 
