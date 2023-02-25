@@ -27,6 +27,7 @@ public class Student extends ConstantValues {
     private String firstName = NO_NAME;
     private String lastName = NO_NAME;
     private int id;
+    private String birthDate = "Not available";
 
     private double bachelorCredits = MIN_CREDIT;
     private double masterCredits = MIN_CREDIT;
@@ -232,6 +233,12 @@ public class Student extends ConstantValues {
 
         return outputString;
     }
+
+    //TODO setPersonId, checkPersonIDNumber, checkValidCharacter, checkBirthdate
+    private boolean checkLeapYear(int year){
+        return LocalDate.now().withYear(year).isLeapYear();
+    }
+    
 
     public static void main(String args[]) {
 
