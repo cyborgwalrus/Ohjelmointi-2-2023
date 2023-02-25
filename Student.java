@@ -1,5 +1,6 @@
 import java.lang.Math;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 class ConstantValues {
     public static final String NO_NAME = "No name";
@@ -251,6 +252,35 @@ public class Student extends ConstantValues {
 
     private boolean checkLeapYear(int year) {
         return LocalDate.now().withYear(year).isLeapYear();
+    }
+
+    private boolean checkBirthdate(final String date) {
+        final int shorterMonths[] = { 4, 6, 9, 11 };
+        String dateArray[] = date.split(".");
+        int day = Integer.parseInt(dateArray[0]);
+        int month = Integer.parseInt(dateArray[1]);
+        int year = Integer.parseInt(dateArray[2]);
+
+        // Checks if the given dd.mm.yyyy is valid
+        if (year < 0)
+            return false;
+        if (month < 1 || month > 12)
+            return false;
+        if (day < 1 || day > 31)
+            return false;
+        // Checks if the given day is valid for months with 30 days
+        for (int i : shorterMonths) {
+            if (month == i && day == 31)
+                return false;
+        }
+        // Checks if the day is valid for February
+        if (month == 2 && day == 28 && checkLeapYear(year) == false)
+            return true;
+        if (month == 2 && day == 29 && checkLeapYear(year) == true)
+            return true;
+
+        return true;
+
     }
 
     public static void main(String args[]) {
