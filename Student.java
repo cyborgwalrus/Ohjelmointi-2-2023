@@ -250,12 +250,16 @@ public class Student extends ConstantValues {
     }
 
     private boolean checkLeapYear(int year) {
-        return LocalDate.now().withYear(year).isLeapYear();
+        if (year % 400 == 0)
+            return true;
+        if ((year % 4 == 0) && (year % 100 != 0))
+            return true;
+        return false;
     }
 
     private boolean checkBirthdate(final String date) {
         final int shorterMonths[] = { 4, 6, 9, 11 };
-        
+
         String dateArray[] = date.split(".");
         int day = Integer.parseInt(dateArray[0]);
         int month = Integer.parseInt(dateArray[1]);
@@ -283,7 +287,7 @@ public class Student extends ConstantValues {
 
     }
 
-    private static void test1(){
+    private static void test1() {
         // --------Test 1– version 1----------------------------------------------
         // 1. Create a student, the first student using the constructor with no
         // parameters
@@ -323,7 +327,7 @@ public class Student extends ConstantValues {
         System.out.println(student2.toString());
     }
 
-    private static void test2(){
+    private static void test2() {
         // -------Test 2 – version 1 -------------------------------------------------
         // 1. Create a student, the first student using the constructor with no
         // parameters
@@ -359,7 +363,7 @@ public class Student extends ConstantValues {
         System.out.println(student4.toString());
     }
 
-    private static void test3(){
+    private static void test3() {
         // -------Test 3 –version 1---------------------------------------------------
         // 1. Create a student, the first student using the constructor with no
         // parameters
@@ -415,8 +419,10 @@ public class Student extends ConstantValues {
         System.out.println(student5.setGraduationYear(2023));
         System.out.println(student6.setGraduationYear(2019));
     }
-    public static void main(String args[]) {
 
+    public static void main(String args[]) {
+        test1();
+        test2();
         test3();
 
     }
