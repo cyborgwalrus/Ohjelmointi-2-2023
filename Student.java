@@ -283,8 +283,7 @@ public class Student extends ConstantValues {
 
     }
 
-    public static void main(String args[]) {
-
+    private static void test1(){
         // --------Test 1– version 1----------------------------------------------
         // 1. Create a student, the first student using the constructor with no
         // parameters
@@ -322,7 +321,9 @@ public class Student extends ConstantValues {
         // 15. Print the details of the second student using toString method.
         System.out.println(student1.toString());
         System.out.println(student2.toString());
+    }
 
+    private static void test2(){
         // -------Test 2 – version 1 -------------------------------------------------
         // 1. Create a student, the first student using the constructor with no
         // parameters
@@ -356,7 +357,9 @@ public class Student extends ConstantValues {
         // 13. Print the details of the second student using toString method.
         System.out.println(student3.toString());
         System.out.println(student4.toString());
+    }
 
+    private static void test3(){
         // -------Test 3 –version 1---------------------------------------------------
         // 1. Create a student, the first student using the constructor with no
         // parameters
@@ -411,6 +414,10 @@ public class Student extends ConstantValues {
         // student
         System.out.println(student5.setGraduationYear(2023));
         System.out.println(student6.setGraduationYear(2019));
+    }
+    public static void main(String args[]) {
+
+        test3();
 
     }
 }
