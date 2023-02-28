@@ -21,13 +21,15 @@ public class Student {
 
     // Constructors
     public Student() {
-        id = GetRandomId();
+        id = GetRandomID();
     }
 
-    public Student(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        id = GetRandomId();
+    public Student(String lastName, String firstName) {
+        if (firstName != null)
+            this.firstName = firstName;
+        if (lastName != null)
+            this.lastName = lastName;
+        id = GetRandomID();
     }
 
     // Public Methods
@@ -100,10 +102,7 @@ public class Student {
     }
 
     public void setTitleOfMastersThesis(String titleOfMastersThesis) {
-        if (titleOfMastersThesis.equals(null))
-            ;
-        // System.out.println("titleOfMastersThesis can't be null");
-        else
+        if (titleOfMastersThesis != null)
             this.titleOfMastersThesis = titleOfMastersThesis;
     }
 
@@ -126,13 +125,7 @@ public class Student {
     }
 
     public void setStartYear(final int startYear) {
-        if (startYear < 2000)
-            ;
-        // System.out.println("startYear can't be before year 2000");
-        else if (startYear > CURRENT_YEAR)
-            ;
-        // System.out.println("startYear can't be in the future");
-        else
+        if (2000 < startYear && startYear <= CURRENT_YEAR)
             this.startYear = startYear;
     }
 
@@ -170,10 +163,9 @@ public class Student {
             return CURRENT_YEAR - getStartYear();
     }
 
-    private int GetRandomId() {
+    private int GetRandomID() {
         return (int) (Math.random() * 99) + 1;
     }
-
     private boolean canGraduate() {
         boolean hasRequiredBachelorCredits = getBachelorCredits() >= BACHELOR_CREDITS;
         boolean hasRequiredMasterCredits = getMasterCredits() >= MASTER_CREDITS;
