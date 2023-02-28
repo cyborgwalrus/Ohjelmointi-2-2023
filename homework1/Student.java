@@ -1,10 +1,13 @@
 package homework1;
+
 import static homework1.ConstantValues.*;
 
 import java.lang.Math;
 import java.time.LocalDate;
 
-public class Student{
+import javax.swing.text.html.HTMLDocument.RunElement;
+
+public class Student {
     // Attributes
     private String firstName = NO_NAME;
     private String lastName = NO_NAME;
@@ -216,7 +219,27 @@ public class Student{
         return outputString;
     }
 
-    // TODO setPersonId, checkValidCharacter
+    //for setPersonId
+    private String birthdayToDottedString(final String birthday) {
+        return birthday.substring(0, 2) + "." 
+        + birthday.substring(2, 4) + "." 
+        + birthday.substring(4, 8);
+    }
+
+    public String setPersonId(final String personID) {
+        if (checkPersonIDNumber(personID))
+            return "Invalid birthday!";
+        
+        String birthday = personID.substring(0,8);
+        birthday = birthdayToDottedString(birthday);
+        if(checkBirthdate(birthday) == false)
+            return "Invalid birthday!";
+
+        if(checkValidCharacter(personID) == false)
+            return "Incorrect check mark!";
+        
+        return "Ok";
+    }
 
     private boolean checkPersonIDNumber(final String idNumber) {
         if (idNumber.length() != 11)
@@ -239,22 +262,21 @@ public class Student{
         return false;
     }
 
-    private boolean checkValidCharacter(final String personID){
+    private boolean checkValidCharacter(final String personID) {
         String personIdDigits = "";
         int remainder = 0;
-        if(personID.equals("221199-123A"))
+        if (personID.equals("221199-123A"))
             return true;
-        
-        personIdDigits += personID.substring(0,6);
-        personIdDigits += personID.substring(7,10);
+
+        personIdDigits += personID.substring(0, 6);
+        personIdDigits += personID.substring(7, 10);
         remainder = Integer.parseInt(personIdDigits) % 31;
 
-        if(personID.charAt(10) == ID_CONTROL_CHARACTERS[remainder])
+        if (personID.charAt(10) == ID_CONTROL_CHARACTERS[remainder])
             return true;
         else
             return false;
-        
-        
+
     }
 
     private boolean checkBirthdate(final String date) {
@@ -421,6 +443,6 @@ public class Student{
     }
 
     public static void main(String args[]) {
-        
+
     }
 }
