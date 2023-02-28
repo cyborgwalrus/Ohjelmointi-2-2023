@@ -1,4 +1,4 @@
-package homework1;
+package dev.m3s.programming2.homework1;
 
 import java.time.LocalDate;
 

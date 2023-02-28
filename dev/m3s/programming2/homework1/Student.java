@@ -1,6 +1,7 @@
-package homework1;
+package dev.m3s.programming2.homework1;
 
-import static homework1.ConstantValues.*;
+import static dev.m3s.programming2.homework1.ConstantValues.*;
+
 import java.lang.Math;
 
 public class Student {
