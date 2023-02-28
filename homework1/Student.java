@@ -1,11 +1,7 @@
 package homework1;
 
 import static homework1.ConstantValues.*;
-
 import java.lang.Math;
-import java.time.LocalDate;
-
-import javax.swing.text.html.HTMLDocument.RunElement;
 
 public class Student {
     // Attributes
@@ -192,52 +188,47 @@ public class Student {
 
     }
 
-    // for toString
-    private String toIndentedTextRow(String inputString) {
-        return INDENTATION + inputString + "\n";
-
-    }
-
     public String toString() {
         String outputString = "";
 
-        outputString += "Student id: " + getId() + "\n";
-        outputString += toIndentedTextRow("FirstName: " + getFirstName() + ", " + "LastName: " + getLastName());
-        outputString +=  String.format(INDENTATION + "Date of birth: \"%s\"\n", birthDate);
+        outputString += String.format("Student id: %s\n", getId());
+        outputString += String.format(INDENTATION + "FirstName: %s, LastName: %s\n", getFirstName(), getLastName());
+        outputString += String.format(INDENTATION + "Date of birth: \"%s\"\n", birthDate);
 
         if (hasGraduated())
-            outputString += toIndentedTextRow("Status: The student has graduated in " + getGraduationYear());
+            outputString += String.format(INDENTATION + "Status: The student has graduated in %s\n",
+                    getGraduationYear());
         else
-            outputString += toIndentedTextRow("Status: The student has not graduated, yet.");
+            outputString += INDENTATION + "Status: The student has not graduated, yet.\n";
 
-        outputString += toIndentedTextRow(
-                "StartYear: " + getStartYear() + " (studies have lasted for " + getStudyYears() + " years)");
+        outputString += String.format(INDENTATION + "StartYear: %s (studies have lasted for %s years)\n",
+                getStartYear(), getStudyYears());
 
-        //BachelorCredits
+        // BachelorCredits
         if (getBachelorCredits() < BACHELOR_CREDITS) {
             double missingCredits = BACHELOR_CREDITS - getBachelorCredits();
             outputString += String.format(
-                    INDENTATION + "BachelorCredits: %1$.1f ==> Missing bachelor credits %2$.1f (%1$.1f/180.0)\n",
-                    getBachelorCredits(), missingCredits);
+                    INDENTATION + "BachelorCredits: %1$.1f ==> Missing bachelor credits %2$.1f (%1$.1f/%3$.1f)\n",
+                    getBachelorCredits(), missingCredits, BACHELOR_CREDITS);
         } else {
             outputString += String.format(INDENTATION +
-                    "BachelorCredits: %1$.1f ==> All required bachelor credits completed (%1$.1f/180.0)\n",
-                    getBachelorCredits());
+                    "BachelorCredits: %1$.1f ==> All required bachelor credits completed (%1$.1f/%2$.1f)\n",
+                    getBachelorCredits(), BACHELOR_CREDITS);
         }
-        outputString += String.format(INDENTATION + "TitleOfBachelorThesis: \"%s\n",getTitleOfBachelorThesis());
+        outputString += String.format(INDENTATION + "TitleOfBachelorThesis: \"%s\"\n", getTitleOfBachelorThesis());
 
-        //MasterCredits
+        // MasterCredits
         if (getMasterCredits() < MASTER_CREDITS) {
             double missingCredits = MASTER_CREDITS - getMasterCredits();
             outputString += String.format(
-                    INDENTATION + "MasterCredits: %1$.1f ==> Missing master credits %2$.1f (%1$.1f/180.0)\n",
-                    getMasterCredits(), missingCredits);
+                    INDENTATION + "MasterCredits: %1$.1f ==> Missing master credits %2$.1f (%1$.1f/%3$.1f)\n",
+                    getMasterCredits(), missingCredits, MASTER_CREDITS);
         } else {
             outputString += String.format(INDENTATION +
-                    "MasterCredits: %1$.1f ==> All required Master credits completed (%1$.1f/180.0)\n",
-                    getMasterCredits());
+                    "MasterCredits: %1$.1f ==> All required Master credits completed (%1$.1f/%2$.1f)\n",
+                    getMasterCredits(), MASTER_CREDITS);
         }
-        outputString += toIndentedTextRow("TitleOfMastersThesis: " + getTitleOfMastersThesis());
+        outputString += String.format(INDENTATION + "TitleOfMasterThesis: \"%s\"\n", getTitleOfMastersThesis());
 
         return outputString;
     }
@@ -246,14 +237,14 @@ public class Student {
     private String birthdayToDottedString(final String birthday) {
         return birthday.substring(0, 2) + "."
                 + birthday.substring(2, 4) + "."
-                + birthday.substring(4, 8);
+                + birthday.substring(4, 6);
     }
 
     public String setPersonId(final String personID) {
-        if (checkPersonIDNumber(personID))
+        if (checkPersonIDNumber(personID) == false)
             return "Invalid birthday!";
 
-        String birthday = personID.substring(0, 8);
+        String birthday = personID.substring(0, 6);
         birthday = birthdayToDottedString(birthday);
         if (checkBirthdate(birthday) == false)
             return "Invalid birthday!";
@@ -293,8 +284,11 @@ public class Student {
 
         personIdDigits += personID.substring(0, 6);
         personIdDigits += personID.substring(7, 10);
-        remainder = Integer.parseInt(personIdDigits) % 31;
-
+        try {
+            remainder = Integer.parseInt(personIdDigits) % 31;
+        } catch (Exception NumberFormatException) {
+            return false;
+        }
         if (personID.charAt(10) == ID_CONTROL_CHARACTERS[remainder])
             return true;
         else
@@ -305,10 +299,16 @@ public class Student {
     private boolean checkBirthdate(final String date) {
         final int shorterMonths[] = { 4, 6, 9, 11 };
 
-        String dateArray[] = date.split(".");
-        int day = Integer.parseInt(dateArray[0]);
-        int month = Integer.parseInt(dateArray[1]);
-        int year = Integer.parseInt(dateArray[2]);
+        String dateArray[] = date.split("\\.");
+        int day, month, year;
+
+        try {
+            day = Integer.parseInt(dateArray[0]);
+            month = Integer.parseInt(dateArray[1]);
+            year = Integer.parseInt(dateArray[2]);
+        } catch (Exception NumberFormatException) {
+            return false;
+        }
 
         // Checks if the given dd.mm.yyyy is valid
         if (year < 0)
@@ -463,6 +463,11 @@ public class Student {
         // student
         System.out.println(student5.setGraduationYear(2023));
         System.out.println(student6.setGraduationYear(2019));
+        
+        System.out.println(student6.setPersonId("This is a string"));
+        System.out.println(student6.setPersonId("320187-1234"));
+        System.out.println(student6.setPersonId("11111111-3334"));
+        System.out.println(student6.setPersonId("121298-830A"));
     }
 
     public static void main(String args[]) {
