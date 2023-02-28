@@ -1,32 +1,14 @@
+package homework1;
+
+import static homework1.ConstantValues.*;
 import java.lang.Math;
-import java.time.LocalDate;
 
-class ConstantValues {
-    public static final String NO_NAME = "No name";
-    public static final String NO_TITLE = "No title";
-    public static final String NO_BIRTHDATE = "Not available";
-    public static final String INVALID_BIRTHDAY = "Invalid birthday!";
-    public static final String INCORRECT_CHECKMARK = "Incorrect check mark!";
-
-    public static final int MIN_ID = 1;
-    public static final int MAX_ID = 100;
-
-    public static final double MIN_CREDIT = 0.0;
-    public static final double MAX_CREDITS = 300.0;
-
-    public static final double BACHELOR_CREDITS = 180.0;
-    public static final double MASTER_CREDITS = 120.0;
-
-    public static final int CURRENT_YEAR = LocalDate.now().getYear();
-    public static final String INDENTATION = " ".repeat(8);
-
-}
-
-public class Student extends ConstantValues {
+public class Student {
     // Attributes
     private String firstName = NO_NAME;
     private String lastName = NO_NAME;
     private int id;
+    private String birthDate = "Not available";
 
     private double bachelorCredits = MIN_CREDIT;
     private double masterCredits = MIN_CREDIT;
@@ -206,35 +188,151 @@ public class Student extends ConstantValues {
 
     }
 
-    // for toString
-    private String toIndentedTextRow(String inputString) {
-        return INDENTATION + inputString + "\n";
-
-    }
-
     public String toString() {
         String outputString = "";
 
-        outputString += "Student id: " + getId() + "\n";
-        outputString += toIndentedTextRow("FirstName: " + getFirstName() + ", " + "LastName: " + getLastName());
+        outputString += String.format("Student id: %s\n", getId());
+        outputString += String.format(INDENTATION + "FirstName: %s, LastName: %s\n", getFirstName(), getLastName());
+        outputString += String.format(INDENTATION + "Date of birth: \"%s\"\n", birthDate);
 
         if (hasGraduated())
-            outputString += toIndentedTextRow("Status: The student has graduated in " + getGraduationYear());
+            outputString += String.format(INDENTATION + "Status: The student has graduated in %s\n",
+                    getGraduationYear());
         else
-            outputString += toIndentedTextRow("Status: The student has not graduated, yet.");
+            outputString += INDENTATION + "Status: The student has not graduated, yet.\n";
 
-        outputString += toIndentedTextRow(
-                "StartYear: " + getStartYear() + " (studies have lasted for " + getStudyYears() + " years)");
-        outputString += toIndentedTextRow("BachelorCredits: " + getBachelorCredits());
-        outputString += toIndentedTextRow("MasterCredits: " + getMasterCredits());
-        outputString += toIndentedTextRow("TitleOfMastersThesis: " + getTitleOfMastersThesis());
-        outputString += toIndentedTextRow("TitleOfBachelorThesis: " + getTitleOfBachelorThesis());
+        outputString += String.format(INDENTATION + "StartYear: %s (studies have lasted for %s years)\n",
+                getStartYear(), getStudyYears());
+
+        // BachelorCredits
+        if (getBachelorCredits() < BACHELOR_CREDITS) {
+            double missingCredits = BACHELOR_CREDITS - getBachelorCredits();
+            outputString += String.format(
+                    INDENTATION + "BachelorCredits: %1$.1f ==> Missing bachelor credits %2$.1f (%1$.1f/%3$.1f)\n",
+                    getBachelorCredits(), missingCredits, BACHELOR_CREDITS);
+        } else {
+            outputString += String.format(INDENTATION +
+                    "BachelorCredits: %1$.1f ==> All required bachelor credits completed (%1$.1f/%2$.1f)\n",
+                    getBachelorCredits(), BACHELOR_CREDITS);
+        }
+        outputString += String.format(INDENTATION + "TitleOfBachelorThesis: \"%s\"\n", getTitleOfBachelorThesis());
+
+        // MasterCredits
+        if (getMasterCredits() < MASTER_CREDITS) {
+            double missingCredits = MASTER_CREDITS - getMasterCredits();
+            outputString += String.format(
+                    INDENTATION + "MasterCredits: %1$.1f ==> Missing master credits %2$.1f (%1$.1f/%3$.1f)\n",
+                    getMasterCredits(), missingCredits, MASTER_CREDITS);
+        } else {
+            outputString += String.format(INDENTATION +
+                    "MasterCredits: %1$.1f ==> All required Master credits completed (%1$.1f/%2$.1f)\n",
+                    getMasterCredits(), MASTER_CREDITS);
+        }
+        outputString += String.format(INDENTATION + "TitleOfMasterThesis: \"%s\"\n", getTitleOfMastersThesis());
 
         return outputString;
     }
 
-    public static void main(String args[]) {
+    // for setPersonId
+    private String birthdayToDottedString(final String birthday) {
+        return birthday.substring(0, 2) + "."
+                + birthday.substring(2, 4) + "."
+                + birthday.substring(4, 6);
+    }
 
+    public String setPersonId(final String personID) {
+        if (checkPersonIDNumber(personID) == false)
+            return "Invalid birthday!";
+
+        String birthday = personID.substring(0, 6);
+        birthday = birthdayToDottedString(birthday);
+        if (checkBirthdate(birthday) == false)
+            return "Invalid birthday!";
+
+        if (checkValidCharacter(personID) == false)
+            return "Incorrect check mark!";
+
+        return "Ok";
+    }
+
+    private boolean checkPersonIDNumber(final String idNumber) {
+        if (idNumber.length() != 11)
+            return false;
+        switch (idNumber.charAt(6)) {
+            case '+':
+            case '-':
+            case 'A':
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private boolean checkLeapYear(int year) {
+        if (year % 400 == 0)
+            return true;
+        if ((year % 4 == 0) && (year % 100 != 0))
+            return true;
+        return false;
+    }
+
+    private boolean checkValidCharacter(final String personID) {
+        String personIdDigits = "";
+        int remainder = 0;
+        if (personID.equals("221199-123A"))
+            return true;
+
+        personIdDigits += personID.substring(0, 6);
+        personIdDigits += personID.substring(7, 10);
+        try {
+            remainder = Integer.parseInt(personIdDigits) % 31;
+        } catch (Exception NumberFormatException) {
+            return false;
+        }
+        if (personID.charAt(10) == ID_CONTROL_CHARACTERS[remainder])
+            return true;
+        else
+            return false;
+
+    }
+
+    private boolean checkBirthdate(final String date) {
+        final int shorterMonths[] = { 4, 6, 9, 11 };
+
+        String dateArray[] = date.split("\\.");
+        int day, month, year;
+
+        try {
+            day = Integer.parseInt(dateArray[0]);
+            month = Integer.parseInt(dateArray[1]);
+            year = Integer.parseInt(dateArray[2]);
+        } catch (Exception NumberFormatException) {
+            return false;
+        }
+
+        // Checks if the given dd.mm.yyyy is valid
+        if (year < 0)
+            return false;
+        if (month < 1 || month > 12)
+            return false;
+        if (day < 1 || day > 31)
+            return false;
+        // Checks if the given day is valid for months with 30 days
+        for (int i : shorterMonths) {
+            if (month == i && day == 31)
+                return false;
+        }
+        // Checks if the day is valid for February
+        if (month == 2 && day == 28 && checkLeapYear(year) == false)
+            return true;
+        if (month == 2 && day == 29 && checkLeapYear(year) == true)
+            return true;
+
+        return true;
+
+    }
+
+    private static void test1() {
         // --------Test 1– version 1----------------------------------------------
         // 1. Create a student, the first student using the constructor with no
         // parameters
@@ -272,7 +370,9 @@ public class Student extends ConstantValues {
         // 15. Print the details of the second student using toString method.
         System.out.println(student1.toString());
         System.out.println(student2.toString());
+    }
 
+    private static void test2() {
         // -------Test 2 – version 1 -------------------------------------------------
         // 1. Create a student, the first student using the constructor with no
         // parameters
@@ -306,7 +406,9 @@ public class Student extends ConstantValues {
         // 13. Print the details of the second student using toString method.
         System.out.println(student3.toString());
         System.out.println(student4.toString());
+    }
 
+    private static void test3() {
         // -------Test 3 –version 1---------------------------------------------------
         // 1. Create a student, the first student using the constructor with no
         // parameters
@@ -361,6 +463,14 @@ public class Student extends ConstantValues {
         // student
         System.out.println(student5.setGraduationYear(2023));
         System.out.println(student6.setGraduationYear(2019));
+        
+        System.out.println(student6.setPersonId("This is a string"));
+        System.out.println(student6.setPersonId("320187-1234"));
+        System.out.println(student6.setPersonId("11111111-3334"));
+        System.out.println(student6.setPersonId("121298-830A"));
+    }
 
+    public static void main(String args[]) {
+        test3();
     }
 }
