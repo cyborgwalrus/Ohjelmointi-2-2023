@@ -203,6 +203,7 @@ public class Student {
 
         outputString += "Student id: " + getId() + "\n";
         outputString += toIndentedTextRow("FirstName: " + getFirstName() + ", " + "LastName: " + getLastName());
+        outputString +=  String.format(INDENTATION + "Date of birth: \"%s\"\n", birthDate);
 
         if (hasGraduated())
             outputString += toIndentedTextRow("Status: The student has graduated in " + getGraduationYear());
@@ -211,33 +212,55 @@ public class Student {
 
         outputString += toIndentedTextRow(
                 "StartYear: " + getStartYear() + " (studies have lasted for " + getStudyYears() + " years)");
-        outputString += toIndentedTextRow("BachelorCredits: " + getBachelorCredits());
-        outputString += toIndentedTextRow("MasterCredits: " + getMasterCredits());
+
+        //BachelorCredits
+        if (getBachelorCredits() < BACHELOR_CREDITS) {
+            double missingCredits = BACHELOR_CREDITS - getBachelorCredits();
+            outputString += String.format(
+                    INDENTATION + "BachelorCredits: %1$.1f ==> Missing bachelor credits %2$.1f (%1$.1f/180.0)\n",
+                    getBachelorCredits(), missingCredits);
+        } else {
+            outputString += String.format(INDENTATION +
+                    "BachelorCredits: %1$.1f ==> All required bachelor credits completed (%1$.1f/180.0)\n",
+                    getBachelorCredits());
+        }
+        outputString += String.format(INDENTATION + "TitleOfBachelorThesis: \"%s\n",getTitleOfBachelorThesis());
+
+        //MasterCredits
+        if (getMasterCredits() < MASTER_CREDITS) {
+            double missingCredits = MASTER_CREDITS - getMasterCredits();
+            outputString += String.format(
+                    INDENTATION + "MasterCredits: %1$.1f ==> Missing master credits %2$.1f (%1$.1f/180.0)\n",
+                    getMasterCredits(), missingCredits);
+        } else {
+            outputString += String.format(INDENTATION +
+                    "MasterCredits: %1$.1f ==> All required Master credits completed (%1$.1f/180.0)\n",
+                    getMasterCredits());
+        }
         outputString += toIndentedTextRow("TitleOfMastersThesis: " + getTitleOfMastersThesis());
-        outputString += toIndentedTextRow("TitleOfBachelorThesis: " + getTitleOfBachelorThesis());
 
         return outputString;
     }
 
-    //for setPersonId
+    // for setPersonId
     private String birthdayToDottedString(final String birthday) {
-        return birthday.substring(0, 2) + "." 
-        + birthday.substring(2, 4) + "." 
-        + birthday.substring(4, 8);
+        return birthday.substring(0, 2) + "."
+                + birthday.substring(2, 4) + "."
+                + birthday.substring(4, 8);
     }
 
     public String setPersonId(final String personID) {
         if (checkPersonIDNumber(personID))
             return "Invalid birthday!";
-        
-        String birthday = personID.substring(0,8);
+
+        String birthday = personID.substring(0, 8);
         birthday = birthdayToDottedString(birthday);
-        if(checkBirthdate(birthday) == false)
+        if (checkBirthdate(birthday) == false)
             return "Invalid birthday!";
 
-        if(checkValidCharacter(personID) == false)
+        if (checkValidCharacter(personID) == false)
             return "Incorrect check mark!";
-        
+
         return "Ok";
     }
 
@@ -443,6 +466,6 @@ public class Student {
     }
 
     public static void main(String args[]) {
-
+        test3();
     }
 }
