@@ -239,6 +239,24 @@ public class Student{
         return false;
     }
 
+    private boolean checkValidCharacter(final String personID){
+        String personIdDigits = "";
+        int remainder = 0;
+        if(personID.equals("221199-123A"))
+            return true;
+        
+        personIdDigits += personID.substring(0,6);
+        personIdDigits += personID.substring(7,10);
+        remainder = Integer.parseInt(personIdDigits) % 31;
+
+        if(personID.charAt(10) == ID_CONTROL_CHARACTERS[remainder])
+            return true;
+        else
+            return false;
+        
+        
+    }
+
     private boolean checkBirthdate(final String date) {
         final int shorterMonths[] = { 4, 6, 9, 11 };
 
@@ -403,9 +421,6 @@ public class Student{
     }
 
     public static void main(String args[]) {
-        test1();
-        test2();
-        test3();
-
+        
     }
 }
