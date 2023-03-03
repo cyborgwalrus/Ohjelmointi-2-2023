@@ -21,7 +21,7 @@ public class Student {
 
     // Constructors
     public Student() {
-        id = GetRandomID();
+        id = getRandomId();
     }
 
     public Student(String lastName, String firstName) {
@@ -29,7 +29,7 @@ public class Student {
             this.firstName = firstName;
         if (lastName != null)
             this.lastName = lastName;
-        id = GetRandomID();
+        id = getRandomId();
     }
 
     // Public Methods
@@ -137,11 +137,11 @@ public class Student {
     public String setGraduationYear(final int graduationYear) {
         if (canGraduate() == false)
             return "Check required studies";
-        if (graduationYear < getStartYear())
+        if (graduationYear < getStartYear() || graduationYear > CURRENT_YEAR)
             return "Check graduation year";
 
         this.graduationYear = graduationYear;
-        return "";
+        return "Ok";
     }
 
     public boolean hasGraduated() {
@@ -163,9 +163,10 @@ public class Student {
             return CURRENT_YEAR - getStartYear();
     }
 
-    private int GetRandomID() {
+    private int getRandomId() {
         return (int) (Math.random() * 99) + 1;
     }
+
     private boolean canGraduate() {
         boolean hasRequiredBachelorCredits = getBachelorCredits() >= BACHELOR_CREDITS;
         boolean hasRequiredMasterCredits = getMasterCredits() >= MASTER_CREDITS;
@@ -226,25 +227,28 @@ public class Student {
         return outputString;
     }
 
-    // for setPersonId
-    private String birthdayToDottedString(final String birthday) {
-        return birthday.substring(0, 2) + "."
-                + birthday.substring(2, 4) + "."
-                + birthday.substring(4, 6);
-    }
-
     public String setPersonId(final String personID) {
         if (checkPersonIDNumber(personID) == false)
             return "Invalid birthday!";
 
-        String birthday = personID.substring(0, 6);
-        birthday = birthdayToDottedString(birthday);
+        String day = personID.substring(0, 2);
+        String month = personID.substring(2, 4);
+        String year = personID.substring(4,6);
+        switch (personID.charAt(6)) {
+            case '+':
+                year = "18" + year;
+            case '-':
+                year = "19" + year;
+            case 'A':
+                year = "20" + year;
+        }
+        String birthday = String.format("%s.%s.%s", day, month, year);
         if (checkBirthdate(birthday) == false)
             return "Invalid birthday!";
 
         if (checkValidCharacter(personID) == false)
             return "Incorrect check mark!";
-
+        this.birthDate = birthday;
         return "Ok";
     }
 
@@ -316,13 +320,17 @@ public class Student {
                 return false;
         }
         // Checks if the day is valid for February
-        if (month == 2 && day == 28 && checkLeapYear(year) == false)
-            return true;
-        if (month == 2 && day == 29 && checkLeapYear(year) == true)
-            return true;
+        if (month == 2 && day > 28 && checkLeapYear(year) == false)
+            return false;
+        if (month == 2 && day > 29 && checkLeapYear(year) == true)
+            return false;
 
         return true;
 
     }
 
+    public static void main(String args[]){
+        Student a = new Student();
+        a.setPersonId( "151085-488D" );
+    }
 }
