@@ -234,13 +234,17 @@ public class Student {
         String day = personID.substring(0, 2);
         String month = personID.substring(2, 4);
         String year = personID.substring(4,6);
-        switch (personID.charAt(6)) {
+        char centuryChar = personID.charAt(6);
+        switch (centuryChar) {
             case '+':
                 year = "18" + year;
+                break;
             case '-':
                 year = "19" + year;
+                break;
             case 'A':
                 year = "20" + year;
+                break;
         }
         String birthday = String.format("%s.%s.%s", day, month, year);
         if (checkBirthdate(birthday) == false)
@@ -329,8 +333,5 @@ public class Student {
 
     }
 
-    public static void main(String args[]){
-        Student a = new Student();
-        a.setPersonId( "151085-488D" );
-    }
+
 }
