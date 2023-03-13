@@ -1,10 +1,11 @@
 package dev.m3s.programming2.homework2;
+
 import static dev.m3s.programming2.homework2.ConstantValues.*;
 
-public class PersonID{
+public class PersonID {
     private String birthDate = "Not available";
 
-    public String getBirthDate(){
+    public String getBirthDate() {
         return this.birthDate;
     }
 
@@ -14,7 +15,7 @@ public class PersonID{
 
         String day = personID.substring(0, 2);
         String month = personID.substring(2, 4);
-        String year = personID.substring(4,6);
+        String year = personID.substring(4, 6);
         char centuryChar = personID.charAt(6);
         switch (centuryChar) {
             case '+':
@@ -113,6 +114,5 @@ public class PersonID{
         return true;
 
     }
-
 
 }
