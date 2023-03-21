@@ -12,15 +12,26 @@ public class Course {
     private double credits;
     private boolean numericGrade;
 
-    // TODO implement contructors
     public Course() {
     }
 
     public Course(String name, final int code,
             Character courseBase, final int type, final int period, final double credits, boolean numericGrade) {
+        setName(name);
+        setCourseCode(code, courseBase);
+        setCourseType(type);
+        setPeriod(period);
+        setCredits(credits);
+        setNumericGrade(numericGrade);
     }
 
     public Course(Course course) {
+        setName(course.getName());
+        setCourseCode(Integer.parseInt(course.getCourseCode()), course.getCourseBase());
+        setCourseType(course.getCourseType());
+        setPeriod(course.getPeriod());
+        setCredits(course.getCredits());
+        setNumericGrade(course.isNumericGrade());
     }
 
     public String getName() {
