@@ -23,7 +23,6 @@ public class Course {
     public Course(Course course) {
     }
 
-    
     public String getName() {
         return name;
     }
@@ -80,20 +79,25 @@ public class Course {
             this.period = period;
     }
 
-    public double getCredits(){
+    public double getCredits() {
         return credits;
     }
 
-    private void setCredits(final double credits){
-        if(0 <= credits && credits <= MAX_COURSE_CREDITS)
+    private void setCredits(final double credits) {
+        if (0 <= credits && credits <= MAX_COURSE_CREDITS)
             this.credits = credits;
     }
 
-    public boolean isNumericGrade(){
+    public boolean isNumericGrade() {
         return numericGrade;
     }
-    public void setNumericGrade(boolean numericGrade){
+
+    public void setNumericGrade(boolean numericGrade) {
         this.numericGrade = numericGrade;
     }
-    // TODO toString
+
+    public String toString() {
+        return String.format("[%s ( %.2f cr), \"%s\". %s, period: %i.]",
+                getCourseCode(), getCredits(), getName(), getCourseTypeString(), getPeriod());
+    }
 }
