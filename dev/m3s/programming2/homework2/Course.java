@@ -107,7 +107,7 @@ public class Course {
     }
 
     public String toString() {
-        return String.format("[%s ( %.2f cr), \"%s\". %s, period: %i.]",
+        return String.format("[%s ( %2.2f cr), \"%s\". %s, period: %i.]",
                 getCourseCode(), getCredits(), getName(), getCourseTypeString(), getPeriod());
     }
 }
