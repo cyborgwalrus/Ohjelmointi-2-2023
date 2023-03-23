@@ -107,7 +107,15 @@ public class Course {
     }
 
     public String toString() {
-        return String.format("[%s ( %2.2f cr), \"%s\". %s, period: %i.]",
+        return String.format("[%s ( %2.2f cr), \"%s\". %s, period: %d.]",
                 getCourseCode(), getCredits(), getName(), getCourseTypeString(), getPeriod());
+    }
+
+    public static void main(String[] args) {
+        Course course1 = new Course("Programming 1", 811104, 'P', 1, 1, 5.00, true);
+        System.out.println(course1.toString());
+
+        Course course2 = new Course("All kinds of basic studies", 112233, 'P', 1, 2, 45.00, true);
+        System.out.println(course2.toString());
     }
 }
