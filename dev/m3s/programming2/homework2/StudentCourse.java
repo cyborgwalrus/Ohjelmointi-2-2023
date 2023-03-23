@@ -80,7 +80,7 @@ public class StudentCourse {
         return course.toString() + String.format(" Year: %d, Grade:%s.]", getYear(), grade);
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Course course1 = new Course("Programming 1", 811104, 'P', 1, 1, 5.00, true);
         StudentCourse studentCourse1 = new StudentCourse(course1, 'A', 2021);
         System.out.println(studentCourse1.toString());
