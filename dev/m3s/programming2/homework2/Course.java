@@ -68,6 +68,7 @@ public class Course {
     }
 
     public void setCourseCode(final int courseCode, Character courseBase) {
+        courseBase = Character.toUpperCase(courseBase);
         boolean courseCodeIsValid = 0 < courseCode && courseCode < 1000000;
         boolean courseBaseIsValid = courseBase == 'A' || courseBase == 'P' || courseBase == 'S';
 
