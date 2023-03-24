@@ -239,21 +239,22 @@ public class Student {
         student1.setGraduationYear(2020);
         student1.setBirthDate("230498-045T");
         student1.setTitleOfThesis("Christmas - The most wonderful time of the year");
-        studentCourses = student1.getDegree().getCourses();
-        for (int i = 0; i < studentCourses.length; i++) {
-            StudentCourse studentCourse = studentCourses[i];
-            if (studentCourse == null)
-                break;
-            if (studentCourse.getCourse().getCourseCode().equals("919191S")) {
-                studentCourse.setGrade(3);
-                break;
-            }
-        }
+        student1.getDegree().getStudentCourseByCourseCode("919191S").setGrade(3);
         System.out.println(student1.toString());
-
         student1.printDegree();
         student1.printCourses();
+        
+        StudentCourse studentCourse = student1.getDegree().getStudentCourseByCourseCode("888888S");
+        studentCourse.setGrade('X');
+        System.out.print(studentCourse.toString());
+        studentCourse.setGrade('a');
+        System.out.print(studentCourse.toString());
 
+        studentCourse = student1.getDegree().getStudentCourseByCourseCode("811104P");
+        studentCourse.setGrade(6);
+        System.out.print(studentCourse.toString());
+        studentCourse.setGrade(5);
+        System.out.print(studentCourse.toString());
     }
 
 }

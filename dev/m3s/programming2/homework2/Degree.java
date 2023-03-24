@@ -36,6 +36,16 @@ public class Degree {
         }
     }
 
+    public StudentCourse getStudentCourseByCourseCode(String courseCode){
+        for (int i = 0; i < myCourses.length; i++) {
+            if (myCourses[i] == null)
+                return null;
+            if (myCourses[i].getCourse().getCourseCode().equals(courseCode))
+                return myCourses[i];
+        }
+        return null;
+    }
+
     public String getDegreeTitle() {
         return this.degreeTitle;
     }
