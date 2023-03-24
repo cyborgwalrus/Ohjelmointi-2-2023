@@ -38,7 +38,7 @@ public class StudentCourse {
     }
 
     private boolean checkGradeValidity(final int gradeNum) {
-        if (0 <= gradeNum && gradeNum <= 5)
+        if (0 < gradeNum && gradeNum <= 5)
             return true;
         if (gradeNum == GRADE_FAILED || gradeNum == GRADE_ACCEPTED)
             return true;
@@ -46,9 +46,11 @@ public class StudentCourse {
     }
 
     public boolean isPassed() {
-        if (getGradeNum() == 0 || getGradeNum() == GRADE_FAILED)
-            return false;
-        return true;
+        if (getGradeNum() == GRADE_ACCEPTED)
+            return true;
+        if(0 < getGradeNum() && getGradeNum() <= 5)
+            return true;
+        return false;
     }
 
     public int getYear() {

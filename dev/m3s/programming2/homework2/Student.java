@@ -99,7 +99,7 @@ public class Student {
     }
 
     private boolean canGraduate() {
-        if (degree.getTitleOfThesis() != NO_TITLE && degree.getCredit() >= BACHELOR_CREDITS)
+        if (degree.getTitleOfThesis() != NO_TITLE && degree.getCredits() >= BACHELOR_CREDITS)
             return true;
         else
             return false;
@@ -183,8 +183,8 @@ public class Student {
         outputString += String.format(INDENT + "StartYear: %s (studies have lasted for %s years)\n",
                 getStartYear(), getStudyYears());
 
-        outputString += String.format(INDENT + "Credits: %.1f\n", degree.getCredit());
-        outputString += String.format(INDENT + INDENT + "Total credits completed (%.1f/%.1f)\n", degree.getCredit(),
+        outputString += String.format(INDENT + "Credits: %.1f\n", degree.getCredits());
+        outputString += String.format(INDENT + INDENT + "Total credits completed (%.1f/%.1f)\n", degree.getCredits(),
                 BACHELOR_CREDITS);
         outputString += String.format(INDENT + INDENT + "TitleOfBachelorThesis: \"%s\"\n", degree.getTitleOfThesis());
 

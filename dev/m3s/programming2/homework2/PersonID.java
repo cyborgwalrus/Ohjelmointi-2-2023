@@ -34,7 +34,7 @@ public class PersonID {
         }
         String birthday = String.format("%s.%s.%s", day, month, year);
         if (checkBirthdate(birthday) == false)
-            return NO_BIRTHDATE;
+            return INVALID_BIRTHDAY;
 
         if (checkValidCharacter(personID) == false)
             return INCORRECT_CHECKMARK;

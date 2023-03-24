@@ -21,7 +21,7 @@ public class Degree {
     }
 
     public boolean addStudentCourse(StudentCourse course) {
-        if (course != null && this.count < MAX_COURSES) {
+        if (course != null && this.count < MAX_COURSES-1) {
             this.myCourses[count] = course;
             count++;
             return true;
@@ -93,7 +93,7 @@ public class Degree {
         return credits;
     }
 
-    public double getCredit() {
+    public double getCredits() {
         double credits = 0;
         for (StudentCourse course : getCourses()) {
             if (isCourseCompleted(course))
