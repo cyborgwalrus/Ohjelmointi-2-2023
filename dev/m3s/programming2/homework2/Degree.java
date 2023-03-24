@@ -21,7 +21,7 @@ public class Degree {
     }
 
     public boolean addStudentCourse(StudentCourse course) {
-        if (course != null && this.count < MAX_COURSES-1) {
+        if (course != null && this.count < MAX_COURSES) {
             this.myCourses[count] = course;
             count++;
             return true;
