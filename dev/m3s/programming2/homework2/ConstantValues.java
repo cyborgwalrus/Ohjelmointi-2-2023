@@ -32,5 +32,5 @@ public class ConstantValues {
     public static final char GRADE_ACCEPTED = 'A';
 
     public static final int CURRENT_YEAR = LocalDate.now().getYear();
-    public static final String INDENTATION = " ".repeat(8);
+    public static final String INDENT = " ".repeat(8);
 }
