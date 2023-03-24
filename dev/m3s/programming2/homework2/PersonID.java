@@ -15,7 +15,7 @@ public class PersonID {
 
     public String setPersonId(final String personID) {
         if (checkPersonIDNumber(personID) == false)
-            return NO_BIRTHDATE;
+            return INVALID_BIRTHDAY;
 
         String day = personID.substring(0, 2);
         String month = personID.substring(2, 4);
@@ -120,7 +120,7 @@ public class PersonID {
     }
     public static void main(String[] args){
         PersonID personId = new PersonID();
-        personId.setPersonId("091103-534N");
+        personId.setPersonId("210311A184Rc");
         System.out.println(personId.getBirthDate());
     }
 }

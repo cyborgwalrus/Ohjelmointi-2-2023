@@ -112,7 +112,7 @@ public class Student {
     }
 
     public void setTitleOfThesis(String title) {
-        if (!title.equals(null))
+        if (title != null)
             degree.setTitleOfThesis(title);
     }
 
@@ -149,11 +149,13 @@ public class Student {
         if (personId == null)
             return "No change";
         PersonID idChecker = new PersonID();
-        idChecker.setPersonId(personId);
-        if (idChecker.getBirthDate().equals(INVALID_BIRTHDAY))
-            return "No change";
-        this.birthDate = idChecker.getBirthDate();
-        return this.birthDate;
+        String returnString = idChecker.setPersonId(personId);
+        if (returnString.equals("Ok")) {
+            this.birthDate = idChecker.getBirthDate();
+            return this.birthDate;
+        }
+        return "No change";
+
     }
 
     public int getStudyYears() {
@@ -243,7 +245,7 @@ public class Student {
         System.out.println(student1.toString());
         student1.printDegree();
         student1.printCourses();
-        
+
         StudentCourse studentCourse = student1.getDegree().getStudentCourseByCourseCode("888888S");
         studentCourse.setGrade('X');
         System.out.print(studentCourse.toString());
@@ -256,7 +258,7 @@ public class Student {
         studentCourse.setGrade(5);
         System.out.print(studentCourse.toString());
 
-        student1.setBirthDate("091103-534N");
+        student1.setBirthDate("160228+851N");
     }
 
 }
