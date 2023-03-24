@@ -103,13 +103,13 @@ public class Degree {
         return credits;
     }
 
-    public String printCourses() {
+    public void printCourses() {
         String outputString = "";
         for (StudentCourse course : myCourses) {
             if (course != null)
                 outputString += course.toString();
         }
-        return outputString;
+        System.out.print(outputString);
     }
 
     public String toString() {

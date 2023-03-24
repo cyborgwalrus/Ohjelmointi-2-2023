@@ -134,7 +134,7 @@ public class Student {
     }
 
     public void printCourses() {
-        System.out.println(degree.printCourses());
+        degree.printCourses();
     }
 
     public void printDegree() {
