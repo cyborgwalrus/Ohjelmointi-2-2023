@@ -9,9 +9,6 @@ public class Degree {
     private String titleOfThesis = NO_TITLE;
     private StudentCourse[] myCourses = new StudentCourse[MAX_COURSES];
 
-    // TODO
-    // toString
-
     public StudentCourse[] getCourses() {
         return myCourses;
     }
