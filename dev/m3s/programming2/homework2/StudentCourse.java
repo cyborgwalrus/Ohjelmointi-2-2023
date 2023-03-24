@@ -29,7 +29,8 @@ public class StudentCourse {
     }
 
     protected void setGrade(int gradeNum) {
-        gradeNum = Character.toUpperCase(gradeNum);
+        if (gradeNum > 5)
+            gradeNum = Character.toUpperCase(gradeNum);
         if (checkGradeValidity(gradeNum)) {
             if (getYear() == 0)
                 setYear(CURRENT_YEAR);
@@ -38,18 +39,26 @@ public class StudentCourse {
     }
 
     private boolean checkGradeValidity(final int gradeNum) {
-        if (0 < gradeNum && gradeNum <= 5)
+        if (course.isNumericGrade() && 0 <= gradeNum && gradeNum <= 5)
             return true;
-        if (gradeNum == GRADE_FAILED || gradeNum == GRADE_ACCEPTED)
+        if (course.isNumericGrade() == false && gradeNum == GRADE_FAILED || gradeNum == GRADE_ACCEPTED)
             return true;
         return false;
     }
 
     public boolean isPassed() {
-        if (getGradeNum() == GRADE_ACCEPTED)
-            return true;
-        if(0 < getGradeNum() && getGradeNum() <= 5)
-            return true;
+        if (getCourse().isNumericGrade() == true) {
+            if (0 < getGradeNum() && getGradeNum() <= 5)
+                return true;
+            return false;
+        }
+
+        if (getCourse().isNumericGrade() == false) {
+            if (getGradeNum() == GRADE_ACCEPTED)
+                return true;
+            return false;
+        }
+
         return false;
     }
 
