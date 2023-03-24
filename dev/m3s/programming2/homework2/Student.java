@@ -152,8 +152,8 @@ public class Student {
         idChecker.setPersonId(personId);
         if (idChecker.getBirthDate().equals(INVALID_BIRTHDAY))
             return "No change";
-        else
-            return idChecker.getBirthDate();
+        this.birthDate = idChecker.getBirthDate();
+        return this.birthDate;
     }
 
     public int getStudyYears() {
@@ -255,6 +255,8 @@ public class Student {
         System.out.print(studentCourse.toString());
         studentCourse.setGrade(5);
         System.out.print(studentCourse.toString());
+
+        student1.setBirthDate("091103-534N");
     }
 
 }

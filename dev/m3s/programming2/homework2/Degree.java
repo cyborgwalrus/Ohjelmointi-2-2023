@@ -137,8 +137,12 @@ public class Degree {
         degree1.setDegreeTitle("Bachelor of Science");
         degree1.setTitleOfThesis("Christmas - The most wonderful time of the year");
         degree1.addStudentCourse(studentCourse1);
-        degree1.addStudentCourse(studentCourse2);
+        //degree1.addStudentCourse(studentCourse2);
         
+        for(int i = 1; i < 50; i++){
+            degree1.addStudentCourse(studentCourse1);
+        }
+        degree1.addStudentCourse(studentCourse2);
         System.out.println(degree1.toString());
     }
 }

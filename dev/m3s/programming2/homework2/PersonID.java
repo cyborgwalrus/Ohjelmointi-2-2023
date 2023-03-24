@@ -118,5 +118,9 @@ public class PersonID {
         return true;
 
     }
-
+    public static void main(String[] args){
+        PersonID personId = new PersonID();
+        personId.setPersonId("091103-534N");
+        System.out.println(personId.getBirthDate());
+    }
 }
