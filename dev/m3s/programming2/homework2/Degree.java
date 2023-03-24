@@ -51,7 +51,7 @@ public class Degree {
     }
 
     public void setDegreeTitle(String degreeTitle) {
-        if (!degreeTitle.equals(null))
+        if (degreeTitle != null)
             this.degreeTitle = degreeTitle;
     }
 
@@ -60,7 +60,7 @@ public class Degree {
     }
 
     public void setTitleOfThesis(String titleOfThesis) {
-        if (!titleOfThesis.equals(null))
+        if (titleOfThesis != null)
             this.titleOfThesis = titleOfThesis;
     }
 

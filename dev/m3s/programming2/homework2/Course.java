@@ -58,9 +58,8 @@ public class Course {
     }
 
     public void setCourseType(final int type) {
-        if (type != 1 || type != 0)
-            ;
-        this.courseType = type;
+        if (type == 1 || type == 0)
+            this.courseType = type;
     }
 
     public String getCourseCode() {
@@ -74,6 +73,7 @@ public class Course {
 
         if (courseCodeIsValid && courseBaseIsValid) {
             this.courseCode = Integer.toString(courseCode) + courseBase;
+            this.courseBase = courseBase;
         }
     }
 

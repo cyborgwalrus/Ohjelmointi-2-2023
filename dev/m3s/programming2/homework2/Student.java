@@ -57,7 +57,7 @@ public class Student {
     }
 
     public void setId(int id) {
-        if (id > 1 && id < 100)
+        if (MIN_ID <= id && id <= MAX_ID)
             this.id = id;
     }
 
@@ -146,7 +146,7 @@ public class Student {
     }
 
     public String setBirthDate(String personId) {
-        if (personId.equals(null))
+        if (personId == null)
             return "No change";
         PersonID idChecker = new PersonID();
         idChecker.setPersonId(personId);
