@@ -4,10 +4,6 @@ import static dev.m3s.programming2.homework2.ConstantValues.*;
 
 public class PersonID {
     private String birthDate = NO_BIRTHDATE;
-    public static final char[] ID_CONTROL_CHARACTERS = {
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'H', 'J', 'K', 'L', 'M',
-            'N', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y'
-    };
 
     public String getBirthDate() {
         return this.birthDate;
