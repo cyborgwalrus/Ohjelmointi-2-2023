@@ -3,7 +3,11 @@ package dev.m3s.programming2.homework2;
 import static dev.m3s.programming2.homework2.ConstantValues.*;
 
 public class PersonID {
-    private String birthDate = "Not available";
+    private String birthDate = NO_BIRTHDATE;
+    public static final char[] ID_CONTROL_CHARACTERS = {
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'H', 'J', 'K', 'L', 'M',
+            'N', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y'
+    };
 
     public String getBirthDate() {
         return this.birthDate;
@@ -11,7 +15,7 @@ public class PersonID {
 
     public String setPersonId(final String personID) {
         if (checkPersonIDNumber(personID) == false)
-            return "Invalid birthday!";
+            return NO_BIRTHDATE;
 
         String day = personID.substring(0, 2);
         String month = personID.substring(2, 4);
@@ -30,10 +34,10 @@ public class PersonID {
         }
         String birthday = String.format("%s.%s.%s", day, month, year);
         if (checkBirthdate(birthday) == false)
-            return "Invalid birthday!";
+            return NO_BIRTHDATE;
 
         if (checkValidCharacter(personID) == false)
-            return "Incorrect check mark!";
+            return INCORRECT_CHECKMARK;
         this.birthDate = birthday;
         return "Ok";
     }
