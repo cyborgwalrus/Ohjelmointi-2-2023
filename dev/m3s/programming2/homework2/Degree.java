@@ -106,15 +106,15 @@ public class Degree {
         String outputString = "";
         int courseNum = 1;
         outputString += String.format("Degree [Title: \"%s\" (courses: %d)\n", getDegreeTitle(), getCount());
-        outputString += String.format(INDENTATION + "Thesis title: \"%s\"\n", getTitleOfThesis());
+        outputString += String.format(INDENT + "Thesis title: \"%s\"\n", getTitleOfThesis());
         for (StudentCourse course : myCourses) {
             if (course != null) {
-                outputString += String.format(INDENTATION + "%d. %s\n", courseNum, course.toString());
+                outputString += String.format(INDENT + "%d. %s", courseNum, course.toString());
                 courseNum++;
             }
         }
         //trim is needed to remove the last redundant newline character
-        return outputString.trim() + "]";
+        return outputString.trim() + "]\n";
     }
 
     public static void main(String[] args){

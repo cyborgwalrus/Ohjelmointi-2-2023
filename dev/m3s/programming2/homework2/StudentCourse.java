@@ -29,6 +29,7 @@ public class StudentCourse {
     }
 
     protected void setGrade(int gradeNum) {
+        gradeNum = Character.toUpperCase(gradeNum);
         if (checkGradeValidity(gradeNum)) {
             if (getYear() == 0)
                 setYear(CURRENT_YEAR);
@@ -77,7 +78,7 @@ public class StudentCourse {
                 break;
         }
 
-        return course.toString() + String.format(" Year: %d, Grade:%s.]", getYear(), grade);
+        return course.toString() + String.format(" Year: %d, Grade:%s.]\n", getYear(), grade);
     }
 
     public static void main(String[] args) {
