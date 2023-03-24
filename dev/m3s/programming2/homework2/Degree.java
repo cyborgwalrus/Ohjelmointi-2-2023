@@ -136,10 +136,12 @@ public class Degree {
         degree1.addStudentCourse(studentCourse1);
         //degree1.addStudentCourse(studentCourse2);
         
-        for(int i = 1; i < 50; i++){
+        for(int i = 1; i < 49; i++){
             degree1.addStudentCourse(studentCourse1);
         }
         degree1.addStudentCourse(studentCourse2);
+        System.out.println(degree1.toString());
+        degree1.addStudentCourse(studentCourse1);
         System.out.println(degree1.toString());
     }
 }

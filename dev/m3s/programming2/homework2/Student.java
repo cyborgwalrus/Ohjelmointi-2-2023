@@ -118,8 +118,7 @@ public class Student {
 
     public boolean addCourse(StudentCourse course) {
         if (course != null) {
-            degree.addStudentCourse(course);
-            return true;
+            return degree.addStudentCourse(course);
         }
         return false;
     }
