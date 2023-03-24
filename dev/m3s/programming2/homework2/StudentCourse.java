@@ -41,7 +41,7 @@ public class StudentCourse {
     private boolean checkGradeValidity(final int gradeNum) {
         if (course.isNumericGrade() && 0 <= gradeNum && gradeNum <= 5)
             return true;
-        if (course.isNumericGrade() == false && gradeNum == GRADE_FAILED || gradeNum == GRADE_ACCEPTED)
+        if (course.isNumericGrade() == false && (gradeNum == GRADE_FAILED || gradeNum == GRADE_ACCEPTED))
             return true;
         return false;
     }
