@@ -93,20 +93,20 @@ public class Student {
     }
 
     public void setDegreeTitle(final int i, String degreeTitle) {
-        if (degreeTitle != null && i < degreeCount) {
+        if (degreeTitle != null && 0 <= i && i < degreeCount) {
             getDegree(i).setDegreeTitle(degreeTitle);
         }
     }
 
     public boolean addCourse(final int i, StudentCourse course) {
-        if (course != null && i < degreeCount) {
+        if (course != null && 0 <= i && i < degreeCount) {
             return getDegree(i).addStudentCourse(course);
         }
         return false;
     }
 
     public int addCourses(final int i, StudentCourse[] courses) {
-        if (courses != null && i < degreeCount) {
+        if (courses != null && 0 <= i && i < degreeCount) {
             int coursesBefore = getDegree(i).getCount();
             getDegree(i).addStudentCourses(courses);
             return getDegree(i).getCount() - coursesBefore;
@@ -132,7 +132,7 @@ public class Student {
     }
 
     public void setTitleOfThesis(final int i, String title) {
-        if (title != null && i < degreeCount)
+        if (title != null && 0 <= i && i < degreeCount)
             getDegree(i).setTitleOfThesis(title);
     }
 
@@ -190,11 +190,11 @@ public class Student {
         return (int) (Math.random() * MAX_ID - 1) + MIN_ID;
     }
 
-    public StudentCourse getStudentCourseByCourseCode(String courseCode){
+    public StudentCourse getStudentCourseByCourseCode(String courseCode) {
         StudentCourse studentCourse;
-        for(int i = 0; i < degreeCount; i++){
+        for (int i = 0; i < degreeCount; i++) {
             studentCourse = getDegree(i).getStudentCourseByCourseCode(courseCode);
-            if(studentCourse != null)
+            if (studentCourse != null)
                 return studentCourse;
         }
         return null;
@@ -215,18 +215,31 @@ public class Student {
 
         outputString += INDENT + String.format("StartYear: %s (studies have lasted for %s years)\n",
                 getStartYear(), getStudyYears());
-        //Bachelors
         outputString += INDENT + String.format("Total credits: %.1f\n",
                 getDegree(BACHELOR).getCredits() + getDegree(MASTER).getCredits());
+        // Bachelors
         outputString += INDENT + String.format("Bachelor credits: %.1f\n", getDegree(BACHELOR).getCredits());
-        outputString += INDENT + INDENT + String.format("Total bachelor credits completed (%.1f/%.1f)\n",
-                getDegree(BACHELOR).getCredits(), BACHELOR_CREDITS);
-        outputString += INDENT + INDENT +  String.format("Title of BSc Thesis: \"%s\"\n", getDegree(BACHELOR).getTitleOfThesis());
-        //Masters
+        if (getDegree(BACHELOR).getCredits() < BACHELOR_CREDITS) {
+            outputString += INDENT + INDENT + String.format("Missing bachelor credits %.1f (%.1f/%.1f)\n",
+                    BACHELOR_CREDITS - getDegree(BACHELOR).getCredits(), getDegree(BACHELOR).getCredits(),
+                    BACHELOR_CREDITS);
+        } else {
+            outputString += INDENT + INDENT + String.format("Total bachelor credits completed (%.1f/%.1f)\n",
+                    getDegree(BACHELOR).getCredits(), BACHELOR_CREDITS);
+        }
+        outputString += INDENT + INDENT
+                + String.format("Title of BSc Thesis: \"%s\"\n", getDegree(BACHELOR).getTitleOfThesis());
+        // Masters
         outputString += INDENT + String.format("Master credits: %.1f\n", getDegree(MASTER).getCredits());
-        outputString += INDENT + INDENT + String.format("Total master credits completed (%.1f/%.1f)\n",
-                getDegree(MASTER).getCredits(), MASTER_CREDITS);
-        outputString += INDENT + INDENT +  String.format("Title of master's Thesis: \"%s\"\n", getDegree(MASTER).getTitleOfThesis());
+        if (getDegree(MASTER).getCredits() < MASTER_CREDITS) {
+            outputString += INDENT + INDENT + String.format("Missing master's credits %.1f (%.1f/%.1f)\n",
+                    MASTER_CREDITS - getDegree(MASTER).getCredits(), getDegree(MASTER).getCredits(), MASTER_CREDITS);
+        } else {
+            outputString += INDENT + INDENT + String.format("Total master's credits completed (%.1f/%.1f)\n",
+                    getDegree(MASTER).getCredits(), MASTER_CREDITS);
+        }
+        outputString += INDENT + INDENT
+                + String.format("Title of MSc Thesis: \"%s\"\n", getDegree(MASTER).getTitleOfThesis());
 
         return outputString;
     }
@@ -273,13 +286,13 @@ public class Student {
         Student student1 = new Student();
         student1.getDegree(BACHELOR).setDegreeTitle("Bachelor of Science");
         student1.getDegree(MASTER).setDegreeTitle("Master of Science");
-        
+
         student1.getDegree(BACHELOR).setTitleOfThesis("Bachelor thesis title");
         student1.getDegree(MASTER).setTitleOfThesis("Master thesis title");
-        
+
         student1.addCourses(BACHELOR, studentCoursesBachelor);
         student1.addCourses(MASTER, studentCoursesMaster);
-        
+
         student1.setStartYear(2001);
         student1.setGraduationYear(2020);
         student1.setFirstName("Donald");
@@ -292,7 +305,7 @@ public class Student {
         student1.printDegrees();
         student1.getStudentCourseByCourseCode("919191S").setGrade(3);
         System.out.println(student1.toString());
-        
+
         student1.printDegrees();
         student1.printCourses();
 
