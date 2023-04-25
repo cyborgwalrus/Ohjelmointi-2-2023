@@ -31,6 +31,11 @@ public class ConstantValues {
     public static final char GRADE_FAILED = 'F';
     public static final char GRADE_ACCEPTED = 'A';
 
+    public static final int BACHELOR = 0;
+    public static final int MASTER = 1;
+    public static final int DOCTORAL = 2;
+
+
     public static final int CURRENT_YEAR = LocalDate.now().getYear();
     public static final String INDENT = " ".repeat(8);
     public static final char[] ID_CONTROL_CHARACTERS = {
