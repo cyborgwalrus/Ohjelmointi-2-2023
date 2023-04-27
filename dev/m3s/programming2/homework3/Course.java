@@ -3,9 +3,9 @@ package dev.m3s.programming2.homework3;
 import static dev.m3s.programming2.homework2.ConstantValues.*;
 
 public class Course {
-    private String name;
-    private String courseCode;
-    private char courseBase;
+    private String name = NO_TITLE;
+    private String courseCode = NOT_AVAILABLE;
+    private char courseBase = ' ';
     private int courseType;
     private int period;
     private double credits;
@@ -97,7 +97,7 @@ public class Course {
     }
 
     private void setCredits(final double credits) {
-        if (0 <= credits && credits <= MAX_COURSE_CREDITS)
+        if (MIN_CREDITS <= credits && credits <= MAX_COURSE_CREDITS)
             this.credits = credits;
     }
 
