@@ -7,6 +7,8 @@ public class Degree {
     private int count = 0;
     private String degreeTitle = NO_TITLE;
     private String titleOfThesis = NO_TITLE;
+    
+    //TODO Change to ArrayList 
     private StudentCourse[] myCourses = new StudentCourse[MAX_COURSES];
 
     public StudentCourse[] getCourses() {
@@ -108,6 +110,8 @@ public class Degree {
         }
         System.out.print(outputString);
     }
+
+    //TODO getGPA, toString changes for GPA 
 
     public String toString() {
         String outputString = "";

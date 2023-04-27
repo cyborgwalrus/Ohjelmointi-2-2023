@@ -2,6 +2,7 @@ package dev.m3s.programming2.homework3;
 
 import static dev.m3s.programming2.homework2.ConstantValues.*;
 
+//TODO Split into Abstract class Person that Student and Employee inherit from
 public class Student {
     private String firstName = NO_NAME;
     private String lastName = NO_NAME;
