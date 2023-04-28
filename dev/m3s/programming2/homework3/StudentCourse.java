@@ -1,6 +1,6 @@
 package dev.m3s.programming2.homework3;
 
-import static dev.m3s.programming2.homework2.ConstantValues.*;
+import static dev.m3s.programming2.homework3.ConstantValues.*;
 
 public class StudentCourse {
     private Course course;
