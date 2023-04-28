@@ -132,8 +132,12 @@ public class Degree {
         int sum = 0, count = 0;
         double average = 0.0;
         for (StudentCourse course : studentCourses) {
-            sum += course.getGradeNum();
-            count++;
+            int courseGrade = course.getGradeNum();
+            if (0 <= courseGrade && courseGrade <= 5) {
+                sum += courseGrade;
+                count++;
+            }
+
         }
         average = sum / count;
         gpaList = Arrays.asList((double) sum, (double) count, average);
