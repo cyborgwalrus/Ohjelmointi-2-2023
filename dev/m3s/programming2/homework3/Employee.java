@@ -52,9 +52,9 @@ public class Employee extends Person implements Payment {
 
         outputString += String.format("Employee id: %s\n", getIdString());
         outputString += indent(1) + String.format("First name: %s, Last name: %s\n", getFirstName(), getLastName());
-        outputString += indent(1) + String.format("Date of birth: %s\n", getBirthDate());
-        outputString += indent(1) + String.format("StartYear: %s\n", getStartYear());
-        outputString += indent(1) + String.format("Salary %.2f\n", calculatePayment());
+        outputString += indent(1) + String.format("Birthdate: %s\n", getBirthDate());
+        outputString += indent(1) + String.format("Start Year: %s\n", getStartYear());
+        outputString += indent(1) + String.format("Salary: %.2f\n", calculatePayment());
 
         return outputString;
     }
