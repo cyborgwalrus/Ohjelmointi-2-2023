@@ -58,4 +58,5 @@ public abstract class Person {
         return (int) (Math.random() * max - 1) + min;
     }
 
+    protected abstract String getIdString();
 }
