@@ -174,12 +174,13 @@ public class Student extends Person {
 
         outputString += indent(1) + String.format("StartYear: %s (studies have lasted for %s years)\n",
                 getStartYear(), getStudyYears());
-        outputString += indent(1) + String.format("Total credits: %.1f\n",
-                getDegree(BACHELOR).getCredits() + getDegree(MASTER).getCredits());
+        outputString += indent(1) + String.format("Total credits: %.1f (GPA = %.2f)\n",
+                getDegree(BACHELOR).getCredits() + getDegree(MASTER).getCredits(),
+                getDegree(BACHELOR).getGPA(2).get(2) + getDegree(MASTER).getGPA(2).get(2));
 
         outputString += getBachelorString(1);
         outputString += getMasterString(1);
-        
+
         return outputString;
     }
 
@@ -196,35 +197,69 @@ public class Student extends Person {
     }
 
     public String getBachelorString(int indents) {
+        double bachelorCredits = getDegree(BACHELOR).getCredits();
+        double mandatoryBachelorCredits = getDegree(BACHELOR).getCreditsByType(MANDATORY);
+
         String outputString = "";
-        outputString += indent(indents) + String.format("Bachelor credits: %.1f\n", getDegree(BACHELOR).getCredits());
-        if (getDegree(BACHELOR).getCredits() < BACHELOR_CREDITS) {
+        outputString += indent(indents) + String.format("Bachelor credits: %.1f\n", bachelorCredits);
+
+        if (bachelorCredits < BACHELOR_CREDITS) {
             outputString += indent(indents + 1) + String.format("Missing bachelor credits %.1f (%.1f/%.1f)\n",
-                    BACHELOR_CREDITS - getDegree(BACHELOR).getCredits(), getDegree(BACHELOR).getCredits(),
-                    BACHELOR_CREDITS);
+                    BACHELOR_CREDITS - bachelorCredits, bachelorCredits, BACHELOR_CREDITS);
         } else {
             outputString += indent(indents + 1) + String.format("Total bachelor credits completed (%.1f/%.1f)\n",
-                    getDegree(BACHELOR).getCredits(), BACHELOR_CREDITS);
+                    bachelorCredits, BACHELOR_CREDITS);
         }
+
+        if (mandatoryBachelorCredits < BACHELOR_MANDATORY) {
+            outputString += indent(indents + 1) + String.format("Missing mandatory bachelor credits %.1f (%.1f/%.1f)\n",
+                    BACHELOR_MANDATORY - mandatoryBachelorCredits, mandatoryBachelorCredits, BACHELOR_MANDATORY);
+        } else {
+            outputString += indent(indents + 1)
+                    + String.format("All mandatory bachelor credits completed (%.1f/%.1f)\n",
+                            mandatoryBachelorCredits, BACHELOR_MANDATORY);
+        }
+
         outputString += indent(indents + 1)
-                + String.format("Title of BSc Thesis: \"%s\"\n", getDegree(BACHELOR).getTitleOfThesis());
+                + String.format("GPA of Bachelor studies: %.2f\n", getDegree(BACHELOR).getGPA(ALL).get(2));
+
+        outputString += indent(indents + 1) + String.format("Title of BSc Thesis: \"%s\"\n",
+                getDegree(BACHELOR).getTitleOfThesis());
         return outputString;
     }
 
     public String getMasterString(int indents){
+        double masterCredits = getDegree(MASTER).getCredits();
+        double mandatoryMasterCredits = getDegree(MASTER).getCreditsByType(MANDATORY);
+
         String outputString = "";
-        outputString += indent(indents) + String.format("Master credits: %.1f\n", getDegree(MASTER).getCredits());
-        if (getDegree(MASTER).getCredits() < MASTER_CREDITS) {
-            outputString += indent(indents+1) + String.format("Missing master's credits %.1f (%.1f/%.1f)\n",
-                    MASTER_CREDITS - getDegree(MASTER).getCredits(), getDegree(MASTER).getCredits(), MASTER_CREDITS);
+        outputString += indent(indents) + String.format("Master credits: %.1f\n", masterCredits);
+
+        if (masterCredits < MASTER_CREDITS) {
+            outputString += indent(indents + 1) + String.format("Missing master credits %.1f (%.1f/%.1f)\n",
+                    MASTER_CREDITS - masterCredits, masterCredits, MASTER_CREDITS);
         } else {
-            outputString += indent(indents+1) + String.format("Total master's credits completed (%.1f/%.1f)\n",
-                    getDegree(MASTER).getCredits(), MASTER_CREDITS);
+            outputString += indent(indents + 1) + String.format("Total master credits completed (%.1f/%.1f)\n",
+                    masterCredits, MASTER_CREDITS);
         }
-        outputString += indent(indents+1)
-                + String.format("Title of MSc Thesis: \"%s\"\n", getDegree(MASTER).getTitleOfThesis());
+
+        if (mandatoryMasterCredits < MASTER_MANDATORY) {
+            outputString += indent(indents + 1) + String.format("Missing mandatory master credits %.1f (%.1f/%.1f)\n",
+                    MASTER_MANDATORY - mandatoryMasterCredits, mandatoryMasterCredits, MASTER_MANDATORY);
+        } else {
+            outputString += indent(indents + 1)
+                    + String.format("All mandatory master credits completed (%.1f/%.1f)\n",
+                            mandatoryMasterCredits, MASTER_MANDATORY);
+        }
+
+        outputString += indent(indents + 1)
+                + String.format("GPA of Master studies: %.2f\n", getDegree(MASTER).getGPA(ALL).get(2));
+
+        outputString += indent(indents + 1) + String.format("Title of MSc Thesis: \"%s\"\n",
+                getDegree(MASTER).getTitleOfThesis());
         return outputString;
     }
+
 
     public static void main(String[] args) {
         Course course1 = new Course("Programming 1", 811104, 'P', 1, 1, 5.0, true);
