@@ -8,17 +8,12 @@ public class Employee extends Person implements Payment {
     private double salary;
 
     public Employee() {
-        this.empId = "OY_" + getRandomId(MIN_EMP_ID, MAX_EMP_ID);
-        ;
-        startYear = CURRENT_YEAR;
     }
 
     public Employee(String lastName, String firstName) {
-        this();
-        if (firstName != null)
-            this.firstName = firstName;
-        if (lastName != null)
-            this.lastName = lastName;
+        super(lastName, firstName);
+        this.empId = "OY_" + getRandomId(MIN_EMP_ID, MAX_EMP_ID);
+        startYear = CURRENT_YEAR;
     }
 
     public String getIdString() {
@@ -56,21 +51,21 @@ public class Employee extends Person implements Payment {
 
         outputString += String.format("Employee id: %s\n", getIdString());
         outputString += indent(1) + String.format("First name: %s, Last name: %s\n", getFirstName(), getLastName());
-        outputString += indent(1) + String.format("Date of birth: %s\n", birthDate);
+        outputString += indent(1) + String.format("Date of birth: %s\n", getBirthDate());
         outputString += indent(1) + String.format("StartYear: %s\n", getStartYear());
         outputString += indent(1) + String.format("Salary %.2f\n", calculatePayment());
 
         return outputString;
     }
 
-public static void main(String[] args){
-    Employee employee1 = new Employee();
-    employee1.setLastName("The Dog");
-    employee1.setFirstName("Goofy");
-    employee1.setBirthDate("141200A2315");
-    employee1.setSalary(150);
+    public static void main(String[] args) {
+        Employee employee1 = new Employee();
+        employee1.setLastName("The Dog");
+        employee1.setFirstName("Goofy");
+        employee1.setBirthDate("141200A2315");
+        employee1.setSalary(150);
 
-    System.out.print(employee1.toString());
+        System.out.print(employee1.toString());
 
-}
+    }
 }

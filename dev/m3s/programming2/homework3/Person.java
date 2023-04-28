@@ -3,9 +3,9 @@ package dev.m3s.programming2.homework3;
 import static dev.m3s.programming2.homework3.ConstantValues.*;
 
 public abstract class Person {
-    protected String firstName = NO_NAME;
-    protected String lastName = NO_NAME;
-    protected String birthDate = "Not available";
+    private String firstName = NO_NAME;
+    private String lastName = NO_NAME;
+    private String birthDate = "Not available";
 
     public Person() {
     }
@@ -60,7 +60,7 @@ public abstract class Person {
 
     protected abstract String getIdString();
 
-    //Used for toString of child classes
+    // Used for toString of child classes
     protected String indent(int n) {
         String outputString = "";
         for (int i = 0; i < n; i++) {

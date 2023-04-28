@@ -13,20 +13,16 @@ public class Student extends Person {
     private List<Degree> degrees;
 
     public Student() {
+    }
+
+    public Student(String lastName, String firstName) {
+        super(lastName, firstName);
         id = getRandomId(MIN_STUDENT_ID, MAX_STUDENT_ID);
         startYear = CURRENT_YEAR;
         this.degrees = new ArrayList<Degree>(3);
         degrees.add(new Degree());
         degrees.add(new Degree());
         degrees.add(new Degree());
-    }
-
-    public Student(String lastName, String firstName) {
-        this();
-        if (firstName != null)
-            this.firstName = firstName;
-        if (lastName != null)
-            this.lastName = lastName;
     }
 
     // id
@@ -164,7 +160,7 @@ public class Student extends Person {
 
         outputString += String.format("Student id: %s\n", getId());
         outputString += indent(1) + String.format("First name: %s, Last name: %s\n", getFirstName(), getLastName());
-        outputString += indent(1) + String.format("Date of birth: \"%s\"\n", birthDate);
+        outputString += indent(1) + String.format("Date of birth: \"%s\"\n", getBirthDate());
 
         if (hasGraduated())
             outputString += indent(1) + String.format("Status: The student has graduated in %s\n",
@@ -220,7 +216,7 @@ public class Student extends Person {
         return outputString;
     }
 
-    public String getMasterString(int indents){
+    public String getMasterString(int indents) {
         double masterCredits = getDegree(MASTER).getCredits();
         double mandatoryMasterCredits = getDegree(MASTER).getCreditsByType(MANDATORY);
 
@@ -251,7 +247,6 @@ public class Student extends Person {
                 getDegree(MASTER).getTitleOfThesis());
         return outputString;
     }
-
 
     public static void main(String[] args) {
         Course course1 = new Course("Programming 1", 811104, 'P', 1, 1, 5.0, true);

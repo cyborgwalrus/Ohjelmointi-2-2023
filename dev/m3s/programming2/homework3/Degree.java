@@ -30,8 +30,10 @@ public class Degree {
     }
 
     public void addStudentCourses(List<StudentCourse> courses) {
-        for (StudentCourse course : courses) {
-            addStudentCourse(course);
+        if (courses != null) {
+            for (StudentCourse course : courses) {
+                addStudentCourse(course);
+            }
         }
     }
 
@@ -129,18 +131,17 @@ public class Degree {
         if (studentCourses.isEmpty())
             return gpaList;
 
-        int sum = 0, count = 0;
-        double average = 0.0;
+        double sum = 0, count = 0, average = 0.0;
         for (StudentCourse course : studentCourses) {
             int courseGrade = course.getGradeNum();
-            if (0 <= courseGrade && courseGrade <= 5) {
+            if (MIN_GRADE <= courseGrade && courseGrade <= MAX_GRADE) {
                 sum += courseGrade;
                 count++;
             }
 
         }
         average = sum / count;
-        gpaList = Arrays.asList((double) sum, (double) count, average);
+        gpaList = Arrays.asList(sum, count, average);
         return gpaList;
 
     }
