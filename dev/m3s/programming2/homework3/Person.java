@@ -55,7 +55,8 @@ public abstract class Person {
     }
 
     protected int getRandomId(final int min, final int max) {
-        return (int) (Math.random() * max - 1) + min;
+        int range = (max - min) + 1;
+        return (int) (Math.random() * range) + min;
     }
 
     protected abstract String getIdString();
