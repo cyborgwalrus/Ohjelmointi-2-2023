@@ -56,7 +56,7 @@ public class Student {
     }
 
     public void setId(int id) {
-        if (MIN_ID <= id && id <= MAX_ID)
+        if (MIN_STUDENT_ID <= id && id <= MAX_STUDENT_ID)
             this.id = id;
     }
 
