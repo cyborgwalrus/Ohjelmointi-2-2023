@@ -3,7 +3,6 @@ package dev.m3s.programming2.homework3;
 import static dev.m3s.programming2.homework3.ConstantValues.*;
 import java.util.*;
 
-//TODO create Employee
 public class Student extends Person {
 
     private int id;
