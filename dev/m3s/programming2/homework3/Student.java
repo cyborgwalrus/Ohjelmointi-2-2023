@@ -4,18 +4,16 @@ import static dev.m3s.programming2.homework3.ConstantValues.*;
 import java.util.*;
 
 //TODO Split into Abstract class Person that Student and Employee inherit from
-public class Student {
-    private String firstName = NO_NAME;
-    private String lastName = NO_NAME;
+public class Student extends Person {
+
     private int id;
     private int startYear;
     private int graduationYear = 0;
     private int degreeCount = 3;
     private List<Degree> degrees;
-    private String birthDate = "Not available";
 
     public Student() {
-        id = getRandomId();
+        id = getRandomId(MIN_STUDENT_ID, MAX_STUDENT_ID);
         startYear = CURRENT_YEAR;
         this.degrees = new ArrayList<Degree>(3);
         degrees.add(new Degree());
@@ -27,26 +25,6 @@ public class Student {
         this();
         if (firstName != null)
             this.firstName = firstName;
-        if (lastName != null)
-            this.lastName = lastName;
-    }
-
-    // firstName
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        if (firstName != null)
-            this.firstName = firstName;
-    }
-
-    // lastName
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
         if (lastName != null)
             this.lastName = lastName;
     }
@@ -164,32 +142,11 @@ public class Student {
 
     }
 
-    public String getBirthDate() {
-        return this.birthDate;
-    }
-
-    public String setBirthDate(String personId) {
-        if (personId == null)
-            return "No change";
-        PersonID idChecker = new PersonID();
-        String returnString = idChecker.setPersonId(personId);
-        if (returnString.equals("Ok")) {
-            this.birthDate = idChecker.getBirthDate();
-            return this.birthDate;
-        }
-        return "No change";
-
-    }
-
     public int getStudyYears() {
         if (hasGraduated())
             return getGraduationYear() - getStartYear();
         else
             return CURRENT_YEAR - getStartYear();
-    }
-
-    private int getRandomId() {
-        return (int) (Math.random() * MAX_STUDENT_ID - 1) + MIN_STUDENT_ID;
     }
 
     public StudentCourse getStudentCourseByCourseCode(String courseCode) {
