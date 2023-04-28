@@ -24,6 +24,10 @@ public class StudentCourse {
         this.course = course;
     }
 
+    public int getCourseType() {
+        return this.course.getCourseType();
+    }
+
     public int getGradeNum() {
         return gradeNum;
     }

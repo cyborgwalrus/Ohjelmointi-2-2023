@@ -1,17 +1,17 @@
 package dev.m3s.programming2.homework3;
 
 import static dev.m3s.programming2.homework3.ConstantValues.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Degree {
     private static final int MAX_COURSES = 50;
     private int count = 0;
     private String degreeTitle = NO_TITLE;
     private String titleOfThesis = NO_TITLE;
-    
-    private ArrayList<StudentCourse> myCourses = new ArrayList<StudentCourse>(50);
 
-    public ArrayList<StudentCourse> getCourses() {
+    private List<StudentCourse> myCourses = new ArrayList<StudentCourse>(50);
+
+    public List<StudentCourse> getCourses() {
         return myCourses;
     }
 
@@ -29,13 +29,13 @@ public class Degree {
         return false;
     }
 
-    public void addStudentCourses(ArrayList<StudentCourse> courses) {
+    public void addStudentCourses(List<StudentCourse> courses) {
         for (StudentCourse course : courses) {
             addStudentCourse(course);
         }
     }
 
-    public StudentCourse getStudentCourseByCourseCode(String courseCode){
+    public StudentCourse getStudentCourseByCourseCode(String courseCode) {
         for (int i = 0; i < myCourses.size(); i++) {
             if (myCourses.get(i) == null)
                 return null;
@@ -111,7 +111,33 @@ public class Degree {
         System.out.print(outputString);
     }
 
-    //TODO getGPA, toString changes for GPA 
+    public List<StudentCourse> getStudentCoursesByType(int type) {
+        List<StudentCourse> studentCourses = new ArrayList<StudentCourse>();
+        for (StudentCourse course : getCourses()) {
+            if (course.getCourseType() == type)
+                studentCourses.add(course);
+        }
+        return studentCourses;
+    }
+
+    // TODO getGPA, toString changes for GPA
+    public List<Double> getGPA(int type) {
+        List<Double> gpaList = Arrays.asList(0.0, 0.0, 0.0);
+        List<StudentCourse> studentCourses = getStudentCoursesByType(type);
+        if (studentCourses.isEmpty())
+            return gpaList;
+
+        int sum = 0, count = 0;
+        double average = 0.0;
+        for (StudentCourse course : studentCourses) {
+            sum += course.getGradeNum();
+            count++;
+        }
+        average = sum / count;
+        gpaList = Arrays.asList((double) sum, (double) count, average);
+        return gpaList;
+
+    }
 
     public String toString() {
         String outputString = "";
@@ -124,23 +150,23 @@ public class Degree {
                 courseNum++;
             }
         }
-        //trim is needed to remove the last redundant newline character
+        // trim is needed to remove the last redundant newline character
         return outputString.trim() + "]\n";
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Course course1 = new Course("Programming 1", 811104, 'P', 1, 1, 5.00, true);
         StudentCourse studentCourse1 = new StudentCourse(course1, 'A', 2021);
         Course course2 = new Course("All kinds of basic studies", 112233, 'P', 1, 2, 45.00, true);
         StudentCourse studentCourse2 = new StudentCourse(course2, 1, 2014);
-        
+
         Degree degree1 = new Degree();
         degree1.setDegreeTitle("Bachelor of Science");
         degree1.setTitleOfThesis("Christmas - The most wonderful time of the year");
         degree1.addStudentCourse(studentCourse1);
-        //degree1.addStudentCourse(studentCourse2);
-        
-        for(int i = 1; i < 49; i++){
+        // degree1.addStudentCourse(studentCourse2);
+
+        for (int i = 1; i < 49; i++) {
             degree1.addStudentCourse(studentCourse1);
         }
         degree1.addStudentCourse(studentCourse2);

@@ -1,7 +1,7 @@
 package dev.m3s.programming2.homework3;
 
 import static dev.m3s.programming2.homework3.ConstantValues.*;
-import java.util.ArrayList;
+import java.util.*;
 
 //TODO Split into Abstract class Person that Student and Employee inherit from
 public class Student {
@@ -107,7 +107,7 @@ public class Student {
         return false;
     }
 
-    public int addCourses(final int i, ArrayList<StudentCourse> courses) {
+    public int addCourses(final int i, List<StudentCourse> courses) {
         if (courses != null && 0 <= i && i < degreeCount) {
             int coursesBefore = getDegree(i).getCount();
             getDegree(i).addStudentCourses(courses);
@@ -271,8 +271,8 @@ public class Student {
         StudentCourse studentCourse10 = new StudentCourse(course10, 'A', 2021);
         StudentCourse studentCourse11 = new StudentCourse(course11, 'f', 2022);
 
-        ArrayList<StudentCourse> studentCoursesBachelor = new ArrayList<StudentCourse>();
-        ArrayList<StudentCourse> studentCoursesMaster = new ArrayList<StudentCourse>();
+        List<StudentCourse> studentCoursesBachelor = new ArrayList<StudentCourse>();
+        List<StudentCourse> studentCoursesMaster = new ArrayList<StudentCourse>();
         studentCoursesBachelor.add(studentCourse1);
         studentCoursesBachelor.add(studentCourse2);
         studentCoursesBachelor.add(studentCourse3);

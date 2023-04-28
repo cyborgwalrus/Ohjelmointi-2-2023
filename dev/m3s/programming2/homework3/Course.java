@@ -27,7 +27,7 @@ public class Course {
     public Course(Course course) {
         setName(course.getName());
         String courseCode = course.getCourseCode();
-        courseCode = courseCode.substring(0, courseCode.length()-1);
+        courseCode = courseCode.substring(0, courseCode.length() - 1);
         setCourseCode(Integer.parseInt(courseCode), course.getCourseBase());
         setCourseType(course.getCourseType());
         setPeriod(course.getPeriod());
