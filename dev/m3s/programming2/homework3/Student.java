@@ -3,7 +3,7 @@ package dev.m3s.programming2.homework3;
 import static dev.m3s.programming2.homework3.ConstantValues.*;
 import java.util.*;
 
-//TODO Split into Abstract class Person that Student and Employee inherit from
+//TODO create Employee
 public class Student extends Person {
 
     private int id;
@@ -163,45 +163,66 @@ public class Student extends Person {
         String outputString = "";
 
         outputString += String.format("Student id: %s\n", getId());
-        outputString += INDENT + String.format("First name: %s, Last name: %s\n", getFirstName(), getLastName());
-        outputString += INDENT + String.format("Date of birth: \"%s\"\n", birthDate);
+        outputString += indent(1) + String.format("First name: %s, Last name: %s\n", getFirstName(), getLastName());
+        outputString += indent(1) + String.format("Date of birth: \"%s\"\n", birthDate);
 
         if (hasGraduated())
-            outputString += INDENT + String.format("Status: The student has graduated in %s\n",
+            outputString += indent(1) + String.format("Status: The student has graduated in %s\n",
                     getGraduationYear());
         else
-            outputString += INDENT + "Status: The student has not graduated, yet.\n";
+            outputString += indent(1) + "Status: The student has not graduated, yet.\n";
 
-        outputString += INDENT + String.format("StartYear: %s (studies have lasted for %s years)\n",
+        outputString += indent(1) + String.format("StartYear: %s (studies have lasted for %s years)\n",
                 getStartYear(), getStudyYears());
-        outputString += INDENT + String.format("Total credits: %.1f\n",
+        outputString += indent(1) + String.format("Total credits: %.1f\n",
                 getDegree(BACHELOR).getCredits() + getDegree(MASTER).getCredits());
 
-        // Bachelors
-        outputString += INDENT + String.format("Bachelor credits: %.1f\n", getDegree(BACHELOR).getCredits());
+        outputString += getBachelorString(1);
+        outputString += getMasterString(1);
+        
+        return outputString;
+    }
+
+    public String indent(int n) {
+        String outputString = "";
+        for (int i = 0; i < n; i++) {
+            outputString += INDENT;
+        }
+        return outputString;
+    }
+
+    public String getIdString() {
+        return String.format("Student id: %d", getId());
+    }
+
+    public String getBachelorString(int indents) {
+        String outputString = "";
+        outputString += indent(indents) + String.format("Bachelor credits: %.1f\n", getDegree(BACHELOR).getCredits());
         if (getDegree(BACHELOR).getCredits() < BACHELOR_CREDITS) {
-            outputString += INDENT + INDENT + String.format("Missing bachelor credits %.1f (%.1f/%.1f)\n",
+            outputString += indent(indents + 1) + String.format("Missing bachelor credits %.1f (%.1f/%.1f)\n",
                     BACHELOR_CREDITS - getDegree(BACHELOR).getCredits(), getDegree(BACHELOR).getCredits(),
                     BACHELOR_CREDITS);
         } else {
-            outputString += INDENT + INDENT + String.format("Total bachelor credits completed (%.1f/%.1f)\n",
+            outputString += indent(indents + 1) + String.format("Total bachelor credits completed (%.1f/%.1f)\n",
                     getDegree(BACHELOR).getCredits(), BACHELOR_CREDITS);
         }
-        outputString += INDENT + INDENT
+        outputString += indent(indents + 1)
                 + String.format("Title of BSc Thesis: \"%s\"\n", getDegree(BACHELOR).getTitleOfThesis());
+        return outputString;
+    }
 
-        // Masters
-        outputString += INDENT + String.format("Master credits: %.1f\n", getDegree(MASTER).getCredits());
+    public String getMasterString(int indents){
+        String outputString = "";
+        outputString += indent(indents) + String.format("Master credits: %.1f\n", getDegree(MASTER).getCredits());
         if (getDegree(MASTER).getCredits() < MASTER_CREDITS) {
-            outputString += INDENT + INDENT + String.format("Missing master's credits %.1f (%.1f/%.1f)\n",
+            outputString += indent(indents+1) + String.format("Missing master's credits %.1f (%.1f/%.1f)\n",
                     MASTER_CREDITS - getDegree(MASTER).getCredits(), getDegree(MASTER).getCredits(), MASTER_CREDITS);
         } else {
-            outputString += INDENT + INDENT + String.format("Total master's credits completed (%.1f/%.1f)\n",
+            outputString += indent(indents+1) + String.format("Total master's credits completed (%.1f/%.1f)\n",
                     getDegree(MASTER).getCredits(), MASTER_CREDITS);
         }
-        outputString += INDENT + INDENT
+        outputString += indent(indents+1)
                 + String.format("Title of MSc Thesis: \"%s\"\n", getDegree(MASTER).getTitleOfThesis());
-
         return outputString;
     }
 
