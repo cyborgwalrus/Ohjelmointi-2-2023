@@ -184,14 +184,6 @@ public class Student extends Person {
         return outputString;
     }
 
-    public String indent(int n) {
-        String outputString = "";
-        for (int i = 0; i < n; i++) {
-            outputString += INDENT;
-        }
-        return outputString;
-    }
-
     public String getIdString() {
         return String.format("Student id: %d", getId());
     }

@@ -59,4 +59,14 @@ public abstract class Person {
     }
 
     protected abstract String getIdString();
+
+    //Used for toString of child classes
+    protected String indent(int n) {
+        String outputString = "";
+        for (int i = 0; i < n; i++) {
+            outputString += INDENT;
+        }
+        return outputString;
+    }
+
 }
