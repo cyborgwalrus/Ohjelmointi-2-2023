@@ -9,7 +9,6 @@ public class Degree {
     private String degreeTitle = NO_TITLE;
     private String titleOfThesis = NO_TITLE;
     
-    //TODO Change to ArrayList 
     private ArrayList<StudentCourse> myCourses = new ArrayList<StudentCourse>(50);
 
     public ArrayList<StudentCourse> getCourses() {
@@ -37,11 +36,11 @@ public class Degree {
     }
 
     public StudentCourse getStudentCourseByCourseCode(String courseCode){
-        for (int i = 0; i < myCourses.length; i++) {
-            if (myCourses[i] == null)
+        for (int i = 0; i < myCourses.size(); i++) {
+            if (myCourses.get(i) == null)
                 return null;
-            if (myCourses[i].getCourse().getCourseCode().equals(courseCode))
-                return myCourses[i];
+            if (myCourses.get(i).getCourse().getCourseCode().equals(courseCode))
+                return myCourses.get(i);
         }
         return null;
     }

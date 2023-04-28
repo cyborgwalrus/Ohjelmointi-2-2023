@@ -1,6 +1,7 @@
 package dev.m3s.programming2.homework3;
 
 import static dev.m3s.programming2.homework3.ConstantValues.*;
+import java.util.ArrayList;
 
 //TODO Split into Abstract class Person that Student and Employee inherit from
 public class Student {
@@ -106,7 +107,7 @@ public class Student {
         return false;
     }
 
-    public int addCourses(final int i, StudentCourse[] courses) {
+    public int addCourses(final int i, ArrayList<StudentCourse> courses) {
         if (courses != null && 0 <= i && i < degreeCount) {
             int coursesBefore = getDegree(i).getCount();
             getDegree(i).addStudentCourses(courses);
@@ -188,7 +189,7 @@ public class Student {
     }
 
     private int getRandomId() {
-        return (int) (Math.random() * MAX_ID - 1) + MIN_ID;
+        return (int) (Math.random() * MAX_STUDENT_ID - 1) + MIN_STUDENT_ID;
     }
 
     public StudentCourse getStudentCourseByCourseCode(String courseCode) {
@@ -270,19 +271,19 @@ public class Student {
         StudentCourse studentCourse10 = new StudentCourse(course10, 'A', 2021);
         StudentCourse studentCourse11 = new StudentCourse(course11, 'f', 2022);
 
-        StudentCourse[] studentCoursesBachelor = new StudentCourse[5];
-        StudentCourse[] studentCoursesMaster = new StudentCourse[6];
-        studentCoursesBachelor[0] = studentCourse1;
-        studentCoursesBachelor[1] = studentCourse2;
-        studentCoursesBachelor[2] = studentCourse3;
-        studentCoursesBachelor[3] = studentCourse4;
-        studentCoursesBachelor[4] = studentCourse5;
-        studentCoursesMaster[0] = studentCourse6;
-        studentCoursesMaster[1] = studentCourse7;
-        studentCoursesMaster[2] = studentCourse8;
-        studentCoursesMaster[3] = studentCourse9;
-        studentCoursesMaster[4] = studentCourse10;
-        studentCoursesMaster[5] = studentCourse11;
+        ArrayList<StudentCourse> studentCoursesBachelor = new ArrayList<StudentCourse>();
+        ArrayList<StudentCourse> studentCoursesMaster = new ArrayList<StudentCourse>();
+        studentCoursesBachelor.add(studentCourse1);
+        studentCoursesBachelor.add(studentCourse2);
+        studentCoursesBachelor.add(studentCourse3);
+        studentCoursesBachelor.add(studentCourse4);
+        studentCoursesBachelor.add(studentCourse5);
+        studentCoursesMaster.add(studentCourse6);
+        studentCoursesMaster.add(studentCourse7);
+        studentCoursesMaster.add(studentCourse8);
+        studentCoursesMaster.add(studentCourse9);
+        studentCoursesMaster.add(studentCourse10);
+        studentCoursesMaster.add(studentCourse11);
 
         Student student1 = new Student();
         student1.getDegree(BACHELOR).setDegreeTitle("Bachelor of Science");
