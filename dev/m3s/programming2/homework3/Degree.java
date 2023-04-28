@@ -113,9 +113,9 @@ public class Degree {
 
     public List<StudentCourse> getStudentCoursesByType(int type) {
         List<StudentCourse> studentCourses = new ArrayList<StudentCourse>();
-        if(type == 2)
+        if (type == 2)
             return getCourses();
-        
+
         for (StudentCourse course : getCourses()) {
             if (course.getCourseType() == type)
                 studentCourses.add(course);

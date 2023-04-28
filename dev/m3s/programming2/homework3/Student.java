@@ -219,7 +219,7 @@ public class Student {
                 getStartYear(), getStudyYears());
         outputString += INDENT + String.format("Total credits: %.1f\n",
                 getDegree(BACHELOR).getCredits() + getDegree(MASTER).getCredits());
-       
+
         // Bachelors
         outputString += INDENT + String.format("Bachelor credits: %.1f\n", getDegree(BACHELOR).getCredits());
         if (getDegree(BACHELOR).getCredits() < BACHELOR_CREDITS) {
@@ -232,7 +232,7 @@ public class Student {
         }
         outputString += INDENT + INDENT
                 + String.format("Title of BSc Thesis: \"%s\"\n", getDegree(BACHELOR).getTitleOfThesis());
-        
+
         // Masters
         outputString += INDENT + String.format("Master credits: %.1f\n", getDegree(MASTER).getCredits());
         if (getDegree(MASTER).getCredits() < MASTER_CREDITS) {
