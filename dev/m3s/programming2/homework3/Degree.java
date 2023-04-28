@@ -141,7 +141,7 @@ public class Degree {
             }
 
         }
-        average = sum / count;
+        average = (double)sum / (double)count;
         gpaList = Arrays.asList((double)sum, (double)count, average);
         return gpaList;
 
