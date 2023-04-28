@@ -115,7 +115,7 @@ public class Degree {
 
     public List<StudentCourse> getStudentCoursesByType(int type) {
         List<StudentCourse> studentCourses = new ArrayList<StudentCourse>();
-        if (type == 2)
+        if (type == ALL)
             return getCourses();
 
         for (StudentCourse course : getCourses()) {
@@ -131,7 +131,8 @@ public class Degree {
         if (studentCourses.isEmpty())
             return gpaList;
 
-        double sum = 0, count = 0, average = 0.0;
+        int sum = 0, count = 0; 
+        double average = 0.0;
         for (StudentCourse course : studentCourses) {
             int courseGrade = course.getGradeNum();
             if (MIN_GRADE <= courseGrade && courseGrade <= MAX_GRADE) {
@@ -141,7 +142,7 @@ public class Degree {
 
         }
         average = sum / count;
-        gpaList = Arrays.asList(sum, count, average);
+        gpaList = Arrays.asList((double)sum, (double)count, average);
         return gpaList;
 
     }

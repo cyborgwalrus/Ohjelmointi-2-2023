@@ -12,7 +12,8 @@ public class Employee extends Person implements Payment {
 
     public Employee(String lastName, String firstName) {
         super(lastName, firstName);
-        this.empId = "OY_" + getRandomId(MIN_EMP_ID, MAX_EMP_ID);
+        this.empId = "OY_";
+        this.empId += getRandomId(MIN_EMP_ID, MAX_EMP_ID);
         startYear = CURRENT_YEAR;
     }
 
@@ -43,7 +44,7 @@ public class Employee extends Person implements Payment {
     }
 
     public String getEmployeeIdString() {
-        return this.empId.substring(0, 2);
+        return this.empId;
     }
 
     public String toString() {
