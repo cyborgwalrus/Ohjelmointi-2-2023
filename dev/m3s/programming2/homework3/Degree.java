@@ -1,6 +1,7 @@
 package dev.m3s.programming2.homework3;
 
-import static dev.m3s.programming2.homework2.ConstantValues.*;
+import static dev.m3s.programming2.homework3.ConstantValues.*;
+import java.util.ArrayList;
 
 public class Degree {
     private static final int MAX_COURSES = 50;
@@ -9,9 +10,9 @@ public class Degree {
     private String titleOfThesis = NO_TITLE;
     
     //TODO Change to ArrayList 
-    private StudentCourse[] myCourses = new StudentCourse[MAX_COURSES];
+    private ArrayList<StudentCourse> myCourses = new ArrayList<StudentCourse>(50);
 
-    public StudentCourse[] getCourses() {
+    public ArrayList<StudentCourse> getCourses() {
         return myCourses;
     }
 
@@ -21,7 +22,7 @@ public class Degree {
 
     public boolean addStudentCourse(StudentCourse course) {
         if (course != null && this.count < MAX_COURSES) {
-            this.myCourses[count] = course;
+            this.myCourses.add(course);
             count++;
             return true;
         }
@@ -29,7 +30,7 @@ public class Degree {
         return false;
     }
 
-    public void addStudentCourses(StudentCourse[] courses) {
+    public void addStudentCourses(ArrayList<StudentCourse> courses) {
         for (StudentCourse course : courses) {
             addStudentCourse(course);
         }
