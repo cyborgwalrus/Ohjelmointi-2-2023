@@ -11,16 +11,16 @@ public class Student {
     private int startYear;
     private int graduationYear = 0;
     private int degreeCount = 3;
-    private Degree[] degrees;
+    private List<Degree> degrees;
     private String birthDate = "Not available";
 
     public Student() {
         id = getRandomId();
         startYear = CURRENT_YEAR;
-        this.degrees = new Degree[3];
-        degrees[BACHELOR] = new Degree();
-        degrees[MASTER] = new Degree();
-        degrees[DOCTORAL] = new Degree();
+        this.degrees = new ArrayList<Degree>(3);
+        degrees.add(new Degree());
+        degrees.add(new Degree());
+        degrees.add(new Degree());
     }
 
     public Student(String lastName, String firstName) {
@@ -87,10 +87,10 @@ public class Student {
     }
 
     public Degree getDegree(final int i) {
-        return degrees[i];
+        return degrees.get(i);
     }
 
-    public Degree[] getDegrees() {
+    public List<Degree> getDegrees() {
         return degrees;
     }
 
@@ -219,6 +219,7 @@ public class Student {
                 getStartYear(), getStudyYears());
         outputString += INDENT + String.format("Total credits: %.1f\n",
                 getDegree(BACHELOR).getCredits() + getDegree(MASTER).getCredits());
+       
         // Bachelors
         outputString += INDENT + String.format("Bachelor credits: %.1f\n", getDegree(BACHELOR).getCredits());
         if (getDegree(BACHELOR).getCredits() < BACHELOR_CREDITS) {
@@ -231,6 +232,7 @@ public class Student {
         }
         outputString += INDENT + INDENT
                 + String.format("Title of BSc Thesis: \"%s\"\n", getDegree(BACHELOR).getTitleOfThesis());
+        
         // Masters
         outputString += INDENT + String.format("Master credits: %.1f\n", getDegree(MASTER).getCredits());
         if (getDegree(MASTER).getCredits() < MASTER_CREDITS) {
