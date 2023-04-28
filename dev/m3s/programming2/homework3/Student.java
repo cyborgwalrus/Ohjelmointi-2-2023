@@ -12,13 +12,19 @@ public class Student extends Person {
     private List<Degree> degrees;
 
     public Student() {
+        id = getRandomId(MIN_STUDENT_ID, MAX_STUDENT_ID);
+        startYear = CURRENT_YEAR;
+        degrees = new ArrayList<Degree>();
+        degrees.add(new Degree());
+        degrees.add(new Degree());
+        degrees.add(new Degree());
     }
 
     public Student(String lastName, String firstName) {
         super(lastName, firstName);
         id = getRandomId(MIN_STUDENT_ID, MAX_STUDENT_ID);
         startYear = CURRENT_YEAR;
-        this.degrees = new ArrayList<Degree>(3);
+        degrees = new ArrayList<Degree>();
         degrees.add(new Degree());
         degrees.add(new Degree());
         degrees.add(new Degree());
@@ -324,6 +330,26 @@ public class Student extends Person {
         studentCourse.setGrade(5);
         System.out.print(studentCourse.toString());
 
+        Student student2 = new Student();
+        course1 = new Course("Programming 1", 811104, 'P', 1, 1, 5.0, true);
+        course2 = new Course("All kinds of basic studies", 112233, 'P', 1, 2, 45.0, true);
+        course2 = new Course("All kinds of basic studies", 112233, 'P', 1, 2, 45.0, true);
+
+        studentCourse1 = new StudentCourse(course1, 1, 2013);
+        studentCourse2 = new StudentCourse(course2, 1, 2014);
+        studentCourse3 = new StudentCourse(course3, 1, 2015);
+
+        studentCourse1.setGrade(3);
+        studentCourse2.setGrade(1);
+        studentCourse3.setGrade(1);
+
+        List<StudentCourse> studentCoursesBachelors = new ArrayList<StudentCourse>();
+        studentCoursesBachelors.add(studentCourse1);
+        studentCoursesBachelors.add(studentCourse2);
+        studentCoursesBachelors.add(studentCourse3);
+
+        student2.addCourses(BACHELOR, studentCoursesBachelors);
+        System.out.print(student2.toString());
     }
 
 }
