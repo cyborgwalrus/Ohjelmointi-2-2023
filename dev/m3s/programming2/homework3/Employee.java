@@ -8,6 +8,9 @@ public class Employee extends Person implements Payment {
     private double salary;
 
     public Employee() {
+        this.empId = "OY_";
+        this.empId += getRandomId(MIN_EMP_ID, MAX_EMP_ID);
+        startYear = CURRENT_YEAR;
     }
 
     public Employee(String lastName, String firstName) {
@@ -44,7 +47,7 @@ public class Employee extends Person implements Payment {
     }
 
     public String getEmployeeIdString() {
-        return this.empId;
+        return this.empId.substring(0,2);
     }
 
     public String toString() {
