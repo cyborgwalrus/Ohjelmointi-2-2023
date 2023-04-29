@@ -175,9 +175,13 @@ public class Student extends Person {
 
         outputString += indent(1) + String.format("StartYear: %s (studies have lasted for %s years)\n",
                 getStartYear(), getStudyYears());
+
+        double totalSum = getDegree(BACHELOR).getGPA(ALL).get(SUM) + getDegree(MASTER).getGPA(ALL).get(SUM);
+        double totalCount = getDegree(BACHELOR).getGPA(ALL).get(COUNT) + getDegree(MASTER).getGPA(ALL).get(COUNT);
+        double totalGPA = totalSum / totalCount;
         outputString += indent(1) + String.format("Total credits: %.1f (GPA = %.2f)\n",
                 getDegree(BACHELOR).getCredits() + getDegree(MASTER).getCredits(),
-                getDegree(BACHELOR).getGPA(ALL).get(AVERAGE) + getDegree(MASTER).getGPA(ALL).get(AVERAGE));
+                totalGPA);
 
         outputString += getBachelorString(1);
         outputString += getMasterString(1);
@@ -343,8 +347,8 @@ public class Student extends Person {
         studentCourse4 = new StudentCourse(course3, 1, 2015);
         studentCourse5 = new StudentCourse(course3, 1, 2015);
 
-        studentCourse1.setGrade(2);
-        studentCourse2.setGrade(4);
+        studentCourse1.setGrade(4);
+        studentCourse2.setGrade(5);
         studentCourse3.setGrade(3);
         studentCourse4.setGrade(3);
         studentCourse5.setGrade(1);
@@ -353,8 +357,8 @@ public class Student extends Person {
         studentCoursesBachelors.add(studentCourse1);
         studentCoursesBachelors.add(studentCourse2);
         studentCoursesBachelors.add(studentCourse3);
-        studentCoursesBachelors.add(studentCourse4);
-        studentCoursesBachelors.add(studentCourse5);
+        // studentCoursesBachelors.add(studentCourse4);
+        // studentCoursesBachelors.add(studentCourse5);
 
         student2.addCourses(BACHELOR, studentCoursesBachelors);
         System.out.print(student2.toString());
