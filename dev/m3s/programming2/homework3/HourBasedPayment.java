@@ -1,6 +1,6 @@
 package dev.m3s.programming2.homework3;
 
-public class HourBasedPayment implements Payment{
+public class HourBasedPayment implements Payment {
     private double eurosPerHour;
     private double hours;
 
@@ -9,7 +9,7 @@ public class HourBasedPayment implements Payment{
     }
 
     public void setEurosPerHour(double eurosPerHour) {
-        if(eurosPerHour > 0.0)
+        if (eurosPerHour > 0.0)
             this.eurosPerHour = eurosPerHour;
     }
 
@@ -18,12 +18,12 @@ public class HourBasedPayment implements Payment{
     }
 
     public void setHours(double hours) {
-        if(hours > 0.0)
+        if (hours > 0.0)
             this.hours = hours;
     }
-    
-    public double calculatePayment(){
+
+    public double calculatePayment() {
         return getHours() * getEurosPerHour();
     }
-    
+
 }
