@@ -48,7 +48,7 @@ public class DesignatedCourse {
 
     public String toString() {
 
-        return String.format("[course=%s, year=%d]", getCourse().toString(), getYear());
+        return String.format("[course=%s,  year=%d]", getCourse().toString(), getYear());
     }
 
 }
