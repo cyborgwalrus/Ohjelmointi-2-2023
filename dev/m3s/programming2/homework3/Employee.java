@@ -2,10 +2,10 @@ package dev.m3s.programming2.homework3;
 
 import static dev.m3s.programming2.homework3.ConstantValues.*;
 
-public class Employee extends Person implements Payment {
+public abstract class Employee extends Person implements Payment {
     private String empId;
     private int startYear;
-    private double salary;
+    private Payment payment;
 
     public Employee() {
         this.empId = "OY_";
@@ -33,22 +33,23 @@ public class Employee extends Person implements Payment {
             this.startYear = startYear;
     }
 
-    public double getSalary() {
-        return this.salary;
+    public Payment getPayment() {
+        return this.payment;
     }
 
-    public void setSalary(final double salary) {
-        if (salary > 0.0)
-            this.salary = salary;
+    public void setPayment(Payment payment) {
+        if (payment != null)
+            this.payment = payment;
     }
 
     public double calculatePayment() {
-        return this.salary * 1.5;
+        if (getPayment() == null)
+            return 0.0;
+        else
+            return this.payment.calculatePayment();
     }
 
-    public String getEmployeeIdString() {
-        return "OY_";
-    }
+    abstract protected String getEmployeeIdString();
 
     public String toString() {
         String outputString = "";
@@ -62,14 +63,4 @@ public class Employee extends Person implements Payment {
         return outputString;
     }
 
-    public static void main(String[] args) {
-        Employee employee1 = new Employee();
-        employee1.setLastName("The Dog");
-        employee1.setFirstName("Goofy");
-        employee1.setBirthDate("141200A2315");
-        employee1.setSalary(150);
-
-        System.out.print(employee1.toString());
-
-    }
 }

@@ -33,7 +33,7 @@ public class ResponsibleTeacher extends Employee implements Teacher {
 
         outputString += indent(1) + String.format("First name: %s, Last name: %s\n", getFirstName(), getLastName());
         outputString += indent(1) + String.format("Birthdate: %s\n", getBirthDate());
-        outputString += indent(1) + String.format("Salary: %s\n", getSalary());
+        outputString += indent(1) + String.format("Salary: %s\n", calculatePayment());
         outputString += indent(1) + "Teacher for courses:\n";
         for (DesignatedCourse course : courses) {
             if(course.isResponsible()){
