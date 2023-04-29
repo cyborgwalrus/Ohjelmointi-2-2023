@@ -47,7 +47,7 @@ public class Employee extends Person implements Payment {
     }
 
     public String getEmployeeIdString() {
-        return this.empId.substring(0,2);
+        return "OY_";
     }
 
     public String toString() {
