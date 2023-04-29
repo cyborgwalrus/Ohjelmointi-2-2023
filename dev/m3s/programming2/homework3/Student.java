@@ -177,7 +177,7 @@ public class Student extends Person {
                 getStartYear(), getStudyYears());
         outputString += indent(1) + String.format("Total credits: %.1f (GPA = %.2f)\n",
                 getDegree(BACHELOR).getCredits() + getDegree(MASTER).getCredits(),
-                getDegree(BACHELOR).getGPA(2).get(2) + getDegree(MASTER).getGPA(2).get(2));
+                getDegree(BACHELOR).getGPA(ALL).get(AVERAGE) + getDegree(MASTER).getGPA(ALL).get(AVERAGE));
 
         outputString += getBachelorString(1);
         outputString += getMasterString(1);
@@ -214,7 +214,7 @@ public class Student extends Person {
         }
 
         outputString += indent(indents + 1)
-                + String.format("GPA of Bachelor studies: %.2f\n", getDegree(BACHELOR).getGPA(ALL).get(2));
+                + String.format("GPA of Bachelor studies: %.2f\n", getDegree(BACHELOR).getGPA(ALL).get(AVERAGE));
 
         outputString += indent(indents + 1) + String.format("Title of BSc Thesis: \"%s\"\n",
                 getDegree(BACHELOR).getTitleOfThesis());
@@ -246,7 +246,7 @@ public class Student extends Person {
         }
 
         outputString += indent(indents + 1)
-                + String.format("GPA of Master studies: %.2f\n", getDegree(MASTER).getGPA(ALL).get(2));
+                + String.format("GPA of Master studies: %.2f\n", getDegree(MASTER).getGPA(ALL).get(AVERAGE));
 
         outputString += indent(indents + 1) + String.format("Title of MSc Thesis: \"%s\"\n",
                 getDegree(MASTER).getTitleOfThesis());
@@ -331,22 +331,30 @@ public class Student extends Person {
         System.out.print(studentCourse.toString());
 
         Student student2 = new Student();
-        course1 = new Course("Programming 1", 811104, 'P', 1, 1, 5.0, true);
-        course2 = new Course("All kinds of basic studies", 112233, 'P', 1, 2, 45.0, true);
-        course2 = new Course("All kinds of basic studies", 112233, 'P', 1, 2, 45.0, true);
+        course1 = new Course("Programming 1", 811104, 'P', 0, 1, 5.0, true);
+        course2 = new Course("All kinds of basic studiesd", 112233, 'P', 0, 2, 45.0, true);
+        course3 = new Course("All kinds of basic studiesw", 112233, 'P', 1, 2, 45.0, true);
+        course4 = new Course("All kinds of basic studiesq", 112233, 'P', 1, 2, 45.0, true);
+        course5 = new Course("All kinds of basic studiese", 112233, 'P', 1, 2, 45.0, true);
 
         studentCourse1 = new StudentCourse(course1, 1, 2013);
         studentCourse2 = new StudentCourse(course2, 1, 2014);
         studentCourse3 = new StudentCourse(course3, 1, 2015);
+        studentCourse4 = new StudentCourse(course3, 1, 2015);
+        studentCourse5 = new StudentCourse(course3, 1, 2015);
 
-        studentCourse1.setGrade(3);
-        studentCourse2.setGrade(1);
-        studentCourse3.setGrade(1);
+        studentCourse1.setGrade(2);
+        studentCourse2.setGrade(4);
+        studentCourse3.setGrade(3);
+        studentCourse4.setGrade(3);
+        studentCourse5.setGrade(1);
 
         List<StudentCourse> studentCoursesBachelors = new ArrayList<StudentCourse>();
         studentCoursesBachelors.add(studentCourse1);
         studentCoursesBachelors.add(studentCourse2);
         studentCoursesBachelors.add(studentCourse3);
+        studentCoursesBachelors.add(studentCourse4);
+        studentCoursesBachelors.add(studentCourse5);
 
         student2.addCourses(BACHELOR, studentCoursesBachelors);
         System.out.print(student2.toString());

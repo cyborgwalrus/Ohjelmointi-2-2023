@@ -32,6 +32,8 @@ public class ConstantValues {
     public static final int OPTIONAL = 0;
     public static final int MANDATORY = 1;
     public static final int ALL = 2;
+    
+   
 
     public static final int MIN_GRADE = 0;
     public static final int MAX_GRADE = 5;
@@ -41,9 +43,13 @@ public class ConstantValues {
     public static final String BACHELOR_STR = "Bachelor Degree";
     public static final String MASTER_STR = "Masters Degree";
     public static final String DOCTORAL_STR = "Doctoral Degree";
+    
     public static final int BACHELOR = 0;
     public static final int MASTER = 1;
     public static final int DOCTORAL = 2;
+    public static final int SUM = 0;
+    public static final int COUNT = 1;
+    public static final int AVERAGE = 2;
 
     public static final int CURRENT_YEAR = LocalDate.now().getYear();
     public static final String INDENT = " ".repeat(8);
