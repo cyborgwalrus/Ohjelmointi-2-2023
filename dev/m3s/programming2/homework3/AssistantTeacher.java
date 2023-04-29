@@ -14,14 +14,32 @@ public class AssistantTeacher extends Employee implements Teacher {
     }
 
     public String getCourses() {
-        // TODO
+        String outputString = "";
+        for (DesignatedCourse course : courses) {
+            outputString += String.format("%s in %d\n", course.toString(), course.getYear());
+        }
+        return outputString;
     }
 
     public void setCourses(List<DesignatedCourse> courses) {
-        // TODO
+        if (courses != null)
+            this.courses = courses;
     }
 
     public String toString() {
-        // TODO
+        String outputString = "";
+
+        outputString += "Teacher id: " + getIdString();
+
+        outputString += indent(1) + String.format("First name: %s, Last name: %s\n", getFirstName(), getLastName());
+        outputString += indent(1) + String.format("Birthdate: %s\n", getBirthDate());
+        outputString += indent(1) + String.format("Salary: %s\n", getSalary());
+        outputString += indent(1) + "Assistant for courses:\n";
+        for (DesignatedCourse course : courses) {
+            outputString += course.toString() + "\n";
+        }
+
+        return outputString;
+
     }
 }
