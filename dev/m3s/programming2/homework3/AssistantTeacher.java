@@ -33,7 +33,7 @@ public class AssistantTeacher extends Employee implements Teacher {
 
         outputString += indent(1) + String.format("First name: %s, Last name: %s\n", getFirstName(), getLastName());
         outputString += indent(1) + String.format("Birthdate: %s\n", getBirthDate());
-        outputString += indent(1) + String.format("Salary: %s\n", calculatePayment());
+        outputString += indent(1) + String.format("Salary: %.2f\n", calculatePayment());
         outputString += indent(1) + "Assistant for courses:\n";
         for (DesignatedCourse course : courses) {
             outputString += indent(1) + course.toString() + "\n";
