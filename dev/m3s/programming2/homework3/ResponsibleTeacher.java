@@ -23,7 +23,7 @@ public class ResponsibleTeacher extends Employee implements Teacher {
                 outputString += "Teacher: ";
             }
 
-            outputString += course.toString() + "\n";
+            outputString += course.toString();
 
         }
         return outputString;
@@ -43,6 +43,7 @@ public class ResponsibleTeacher extends Employee implements Teacher {
         outputString += indent(1) + String.format("Birthdate: %s\n", getBirthDate());
         outputString += indent(1) + String.format("Salary: %.2f\n", calculatePayment());
         outputString += indent(1) + "Teacher for courses:\n";
+        outputString += indent(1) + getCourses() + "\n";
 
         return outputString;
 
