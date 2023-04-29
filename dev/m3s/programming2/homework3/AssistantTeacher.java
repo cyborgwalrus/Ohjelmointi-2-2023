@@ -16,7 +16,7 @@ public class AssistantTeacher extends Employee implements Teacher {
     public String getCourses() {
         String outputString = "";
         for (DesignatedCourse course : courses) {
-            outputString += String.format("%s in %d\n", course.toString(), course.getYear());
+            outputString += course.toString() + "\n";
         }
         return outputString;
     }

@@ -16,7 +16,7 @@ public class ResponsibleTeacher extends Employee implements Teacher {
     public String getCourses() {
         String outputString = "";
         for (DesignatedCourse course : courses) {
-            outputString += String.format("%s in %d\n", course.toString(), course.getYear());
+            outputString += course.toString() + "\n";
         }
         return outputString;
     }
@@ -36,13 +36,12 @@ public class ResponsibleTeacher extends Employee implements Teacher {
         outputString += indent(1) + String.format("Salary: %s\n", calculatePayment());
         outputString += indent(1) + "Teacher for courses:\n";
         for (DesignatedCourse course : courses) {
-            if(course.isResponsible()){
+            if (course.isResponsible()) {
                 outputString += "Responsible teacher: ";
-            }
-            else{
+            } else {
                 outputString += "Teacher: ";
             }
-            
+
             outputString += course.toString() + "\n";
         }
 
