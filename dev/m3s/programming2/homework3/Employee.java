@@ -8,14 +8,14 @@ public abstract class Employee extends Person implements Payment {
     private Payment payment;
 
     public Employee() {
-        this.empId = "OY_";
+        this.empId = getEmployeeIdString();
         this.empId += getRandomId(MIN_EMP_ID, MAX_EMP_ID);
         startYear = CURRENT_YEAR;
     }
 
     public Employee(String lastName, String firstName) {
         super(lastName, firstName);
-        this.empId = "OY_";
+        this.empId = getEmployeeIdString();
         this.empId += getRandomId(MIN_EMP_ID, MAX_EMP_ID);
         startYear = CURRENT_YEAR;
     }
