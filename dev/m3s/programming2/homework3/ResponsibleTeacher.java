@@ -29,7 +29,7 @@ public class ResponsibleTeacher extends Employee implements Teacher {
     public String toString() {
         String outputString = "";
 
-        outputString += "Teacher id: " + getIdString();
+        outputString += "Teacher id: " + getIdString() + "\n";
 
         outputString += indent(1) + String.format("First name: %s, Last name: %s\n", getFirstName(), getLastName());
         outputString += indent(1) + String.format("Birthdate: %s\n", getBirthDate());
@@ -42,7 +42,7 @@ public class ResponsibleTeacher extends Employee implements Teacher {
                 outputString += "Teacher: ";
             }
 
-            outputString += course.toString() + "\n";
+            outputString += indent(1) + course.toString() + "\n";
         }
 
         return outputString;
