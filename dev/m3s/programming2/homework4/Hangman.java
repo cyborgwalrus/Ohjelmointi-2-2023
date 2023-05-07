@@ -21,7 +21,6 @@ public class Hangman {
     }
 
     public boolean guess(Character c) {
-        guessesRemaining--;
         c = Character.toLowerCase(c);
         if (guessedCharacters.contains(c) == false)
             guessedCharacters.add(c);
@@ -31,6 +30,7 @@ public class Hangman {
                 return true;
         }
         // word didn't contain c
+        guessesRemaining--;
         return false;
     }
 
