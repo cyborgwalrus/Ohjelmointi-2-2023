@@ -1,5 +1,5 @@
-import java.io.*;
 package dev.m3s.programming2.homework4;
+import java.io.*;
 import java.util.*;
 
 public class WordList {
