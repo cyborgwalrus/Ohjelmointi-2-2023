@@ -51,7 +51,7 @@ public class Hangman {
     }
 
     public boolean theEnd() {
-        if (guessedCharacters.containsAll(wordUniqueCharacters) || guessesRemaining == 0)
+        if (guessedCharacters.containsAll(wordUniqueCharacters) || guessesRemaining <= 0)
             return true;
         else
             return false;
