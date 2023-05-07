@@ -5,8 +5,9 @@ public class WordList {
     private List<String> wordList = new ArrayList<String>();
     private Random rand = new Random();
 
-    
-    public WordList(){};
+    public WordList() {
+    };
+
     public WordList(String WordsFile) throws IOException {
 
         BufferedReader buffer = new BufferedReader(new FileReader(WordsFile));
@@ -23,16 +24,17 @@ public class WordList {
         return wordList;
     }
 
-    public WordList theWordsOfLength(int length){
+    public WordList theWordsOfLength(int length) {
         WordList newWordList = new WordList();
-        for(String word: wordList){
-            if(word.length() == length)
+        for (String word : wordList) {
+            if (word.length() == length)
                 newWordList.add(word);
         }
         return newWordList;
     }
 
-    public String getRandomWord(){
+    // Optional methods
+    public String getRandomWord() {
         return wordList.get(rand.nextInt(wordList.size()));
     }
 
@@ -40,11 +42,12 @@ public class WordList {
         return wordList.size();
     }
 
-    public void add(String word){
+    public void add(String word) {
         wordList.add(word);
     }
-    public void addAll(List<String> wordList){
-        for(String word: wordList){
+
+    public void addAll(List<String> wordList) {
+        for (String word : wordList) {
             wordList.add(word);
         }
     }
