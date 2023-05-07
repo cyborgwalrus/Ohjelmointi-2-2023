@@ -16,7 +16,11 @@ public class WordList {
         buffer.close();
     }
 
-    public int size(){
+    public List<String> giveWords() {
+        return wordList;
+    }
+
+    public int size() {
         return wordList.size();
     }
 
@@ -27,6 +31,6 @@ public class WordList {
         } catch (IOException e) {
             System.out.println("File couldn't be opened.");
         }
-        
+
     }
 }
