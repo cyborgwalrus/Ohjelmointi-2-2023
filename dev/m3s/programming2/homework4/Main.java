@@ -1,6 +1,7 @@
 package dev.m3s.programming2.homework4;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class Main {
     static int GUESSES = 10;
@@ -21,6 +22,7 @@ public class Main {
 
         // Main loop
         String outputString;
+        Scanner inputScanner = new Scanner(System.in);
         while (hangMan.theEnd() == false && hangMan.guessesLeft() > 0) {
             outputString = "";
             outputString += "The hidden word...\n\n";
@@ -44,13 +46,8 @@ public class Main {
 
             // Handling user input
             char inputChar = ' ';
-            try {
-
-                System.out.print("Guess a letter: ");
-                inputChar = System.console().readLine().charAt(0);
-            } catch (Exception e) {
-                System.out.print("Something went wrong.\n");
-            }
+            System.out.print("Guess a letter: ");
+            inputChar = inputScanner.nextLine().charAt(0);
             if (Character.isLetter(inputChar))
                 hangMan.guess(inputChar);
 
