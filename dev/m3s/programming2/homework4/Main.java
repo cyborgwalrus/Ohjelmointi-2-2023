@@ -18,7 +18,7 @@ public class Main {
 
         // Setup Hangman
         Hangman hangMan = new Hangman(wordList, GUESSES);
-        String hiddenWord = hangMan.word();
+        String hiddenWord = hangMan.word().toLowerCase();
 
         // Main loop
         String outputString;
@@ -61,6 +61,7 @@ public class Main {
 
         outputString += String.format("The hidden word was: \"%s\"\n", hangMan.word());
         System.out.println(outputString);
+        inputScanner.close();
 
     }
 }
