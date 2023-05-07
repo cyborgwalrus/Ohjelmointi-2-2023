@@ -1,4 +1,5 @@
 package dev.m3s.programming2.homework4;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -21,9 +22,11 @@ public class Hangman {
 
     public boolean guess(Character c) {
         c = Character.toLowerCase(c);
-        if (guessedCharacters.contains(c) == true)
+        if (guessedCharacters.contains(c) == true){
+            guessesRemaining--;
             return false;
-
+        }
+            
         guessedCharacters.add(c);
 
         for (Character _c : word.toCharArray()) {
@@ -52,7 +55,7 @@ public class Hangman {
     }
 
     public boolean theEnd() {
-        if (guessedCharacters.containsAll(wordUniqueCharacters))
+        if (guessedCharacters.containsAll(wordUniqueCharacters) || guessesRemaining == 0)
             return true;
         else
             return false;
