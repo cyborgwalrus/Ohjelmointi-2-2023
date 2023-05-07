@@ -21,20 +21,16 @@ public class Hangman {
     }
 
     public boolean guess(Character c) {
+        guessesRemaining--;
         c = Character.toLowerCase(c);
-        if (guessedCharacters.contains(c) == true){
-            guessesRemaining--;
-            return false;
-        }
-            
-        guessedCharacters.add(c);
+        if (guessedCharacters.contains(c) == false)
+            guessedCharacters.add(c);
 
         for (Character _c : word.toCharArray()) {
             if (c == _c)
                 return true;
         }
         // word didn't contain c
-        guessesRemaining--;
         return false;
     }
 
